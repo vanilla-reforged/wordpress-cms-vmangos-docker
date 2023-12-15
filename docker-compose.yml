@@ -30,7 +30,7 @@ services:
     restart: unless-stopped
     ports:
       - 8081:80
-    environment: null
+    environment:
     PMA_HOST: wordpress_database
     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks:
