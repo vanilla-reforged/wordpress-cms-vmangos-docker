@@ -31,8 +31,8 @@ services:
     ports:
       - 8081:80
     environment:
-    PMA_HOST: wordpress_database
-    MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      PMA_HOST: wordpress_database
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks:
       - wordpress-network
 
