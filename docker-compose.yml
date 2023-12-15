@@ -6,8 +6,8 @@ services:
     # We use a mariadb image which supports both amd64 & arm64 architecture
     image: mariadb:10.6.4-focal
     restart: unless-stopped
-    ports:
-      - 3306:3306
+#    ports:
+#      - 3306:3306
     env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
