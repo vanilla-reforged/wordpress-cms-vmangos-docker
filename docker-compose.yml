@@ -14,7 +14,7 @@ services:
     volumes:
       - ./vol/database:/var/lib/mysql
     networks:
-      - wordpress-network
+      - vmangos-network
     deploy:
       resources:
         limits:
@@ -34,7 +34,7 @@ services:
       PMA_HOST: wordpress_database
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks:
-      - wordpress-network
+      - vmangos-network
 
   wordpress_lazycms:
     container_name: wordpress_lazycms
@@ -54,8 +54,8 @@ services:
     volumes:
       - ./vol/content:/var/www/html/wp-content
     networks:
-      - wordpress-network
+      - vmangos-network
 
 networks:
-  wordpress-network:
+  vmangos-network:
     driver: bridge
