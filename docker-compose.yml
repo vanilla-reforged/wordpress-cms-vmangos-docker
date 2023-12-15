@@ -2,13 +2,14 @@ version: "3.8"
 
 services:
 
-  database:
-    # We use a mariadb image which supports both amd64 & arm64 architecture
-    image: mariadb:10.6.4-focal
+  wordpress_database:
+      container_name: vmangos_database
+    build:
+      context: .
+      dockerfile: docker/database/Dockerfile
     restart: unless-stopped
 #    ports:
 #      - 3306:3306
-    env_file: .env
     environment:
       MYSQL_ROOT_PASSWORD: '${MYSQL_ROOT_PASSWORD}'
       MYSQL_DATABASE: '${MYSQL_DATABASE}'
@@ -23,10 +24,12 @@ services:
         limits:
           memory: 2048m
 
-  phpmyadmin:
+  wordpress_phpmyadmin:
     depends_on:
       - database
-    image: phpmyadmin/phpmyadmin
+    build:
+      context: .
+      dockerfile: docker/phpmyadmin/Dockerfile
     restart: unless-stopped
     ports:
       - 8081:80
@@ -37,10 +40,12 @@ services:
     networks:
       - wordpress-network
 
-  wordpress:
+  wordpress_lazycms:
     depends_on:
       - database
-    image: wordpress:6.2.2-apache
+    build:
+      context: .
+      dockerfile: docker/wordpress/Dockerfile
     restart: unless-stopped
     ports:
       - 8080:80
