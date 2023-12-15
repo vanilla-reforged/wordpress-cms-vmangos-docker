@@ -31,7 +31,7 @@ services:
     ports:
       - 8081:80
     environment: null
-    PMA_HOST: database
+    PMA_HOST: wordpress_database
     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     networks:
       - wordpress-network
@@ -47,7 +47,7 @@ services:
     ports:
       - 8080:80
     environment:
-      WORDPRESS_DB_HOST: ${WORDPRESS_DB_HOST}
+      WORDPRESS_DB_HOST: wordpress_database:3306 # use the same name as database service
       WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
       WORDPRESS_DB_USER: ${MYSQL_USER}
       WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
