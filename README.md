@@ -28,13 +28,6 @@ At this point, you have to adjust the variables in the files:
 - `./docker-compose.yml` (service drupal_certbot, command section)
 to fit your desired setup. 
 
-then start your environment with
-
-```sh
-user@local:lazycms-vmangos-docker$ docker compose up -d
-```
-
-
 ## Vanilla Reforged Links
 
 Find and join us on the web https://vanillareforged.org/en/
