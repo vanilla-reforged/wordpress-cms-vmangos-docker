@@ -22,14 +22,18 @@ user@local:~$ git clone https://github.com/vanilla-reforged/lazycms-vmangos-dock
 user@local:~$ cd lazycms-vmangos-docker
 ```
 
-At this point, you have to adjust the variables in the `./.env` file, the `your server` section in the `./vol/nginx.conf` configuration file and the `command:` section for the drupal_certbot service in the docker-compose.yml to fit your desired setup. 
+At this point, you have to adjust the variables in the files:
+- `./.env`
+- `./vol/nginx.conf` (server_name section)
+- `./docker-compose.yml` (service drupal_certbot, command section)
+to fit your desired setup. 
 
-then start your environment
+then start your environment with
 
 ```sh
 user@local:lazycms-vmangos-docker$ docker compose up -d
 ```
-Now connect over the browser to 8080 / 8081 to start the setup.
+
 
 ## Vanilla Reforged Links
 
