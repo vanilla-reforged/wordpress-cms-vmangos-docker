@@ -1,40 +1,32 @@
-version: "3.8"
+version: "3.7"
+
 services:
   drupal_database:
+    image: mariadb
     container_name: drupal_database
-    build:
-      context: .
-      dockerfile: docker/database/Dockerfile
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    env_file: .env
     volumes:
       - ./vol/database:/var/lib/mysql
     networks:
-      - vmangos-network
+      - internal
   
   drupal:
+    image: drupal
     container_name: drupal
-    build:
-      context: .
-      dockerfile: docker/drupal/Dockerfile
     depends_on:
       - drupal_database
     restart: unless-stopped
+    networks:
+      - internal
+      - external
     volumes:
       - ./vol/drupal:/var/www/html
-    networks:
-      - vmangos-network
-
+  
   drupal_nginx:
+    image: nginx
     container_name: drupal_nginx
-    build:
-      context: .
-      dockerfile: docker/nginx/Dockerfile
     depends_on:
       - drupal
     restart: unless-stopped
@@ -45,21 +37,20 @@ services:
       - ./vol/nginx-conf:/etc/nginx/conf.d
       - ./vol/certbot-etc:/etc/letsencrypt
     networks:
-      - vmangos-network
+      - external
   
   drupal_certbot:
-    container_name: drupal_certbot
-    build:
-      context: .
-      dockerfile: docker/certbot/Dockerfile
     depends_on:
       - drupal_nginx
     image: certbot/certbot
+    container_name: drupal_certbot
     volumes:
       - ./vol/certbot-etc:/etc/letsencrypt
       - ./vol/drupal:/var/www/html
     command: certonly --webroot --webroot-path=/var/www/html --email sammy@your_domain --agree-tos --no-eff-email --staging -d your_domain -d www.your_domain
 
 networks:
-  vmangos-network:
-    name: vmangos-network  
+  external:
+    driver: bridge
+  internal:
+    driver: bridge
