@@ -22,7 +22,7 @@ user@local:~$ git clone https://github.com/vanilla-reforged/lazycms-vmangos-dock
 user@local:~$ cd lazycms-vmangos-docker
 ```
 
-At this point, you have to adjust the configuration file in `./.env` for your desired setup. 
+At this point, you have to adjust the docker configuration file `./.env`, the NGINX configuration file `./vol/nginx.conf` and the command section for your certbot in the docker-compose.yml to fit your desired setup. 
 
 then start your environment
 
