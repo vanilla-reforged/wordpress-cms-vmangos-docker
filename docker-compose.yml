@@ -1,0 +1,65 @@
+version: "3.8"
+services:
+  drupal_database:
+    container_name: drupal_database
+    build:
+      context: .
+      dockerfile: docker/database/Dockerfile
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./vol/database:/var/lib/mysql
+    networks:
+      - vmangos-network
+  
+  drupal:
+    container_name: drupal
+    build:
+      context: .
+      dockerfile: docker/drupal/Dockerfile
+    depends_on:
+      - drupal_database
+    restart: unless-stopped
+    volumes:
+      - ./vol/drupal:/var/www/html
+    networks:
+      - vmangos-network
+
+  drupal_nginx:
+    container_name: drupal_nginx
+    build:
+      context: .
+      dockerfile: docker/nginx/Dockerfile
+    depends_on:
+      - drupal
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./vol/drupal:/var/www/html
+      - ./vol/nginx-conf:/etc/nginx/conf.d
+      - ./vol/certbot-etc:/etc/letsencrypt
+    networks:
+      - vmangos-network
+  
+  drupal_certbot:
+    container_name: drupal_certbot
+    build:
+      context: .
+      dockerfile: docker/certbot/Dockerfile
+    depends_on:
+      - drupal_nginx
+    image: certbot/certbot
+    volumes:
+      - ./vol/certbot-etc:/etc/letsencrypt
+      - ./vol/drupal:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email sammy@your_domain --agree-tos --no-eff-email --staging -d your_domain -d www.your_domain
+
+networks:
+  vmangos-network:
+    name: vmangos-network  
