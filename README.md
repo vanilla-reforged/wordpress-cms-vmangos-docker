@@ -31,7 +31,7 @@ to fit your desired setup.
 
 then execute the setup docker compose file
 
-'docker compose -f docker-compose-setup.yml up -d'
+`docker compose -f docker-compose-setup.yml up -d`
 
 Check the status of the services using the docker-compose ps command:
 
