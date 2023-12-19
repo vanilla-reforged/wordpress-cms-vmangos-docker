@@ -7,9 +7,7 @@
 
 ### Preface
 
-This a simple CMS solution for vanilla wow servers.
-
-Using Docker and Drupal, heavily drawing form this guide:
+This a simple CMS solution for vanilla wow servers using Docker and Drupal, heavily drawing form this guide:
 
 https://www.digitalocean.com/community/tutorials/how-to-install-drupal-with-docker-compose
 
