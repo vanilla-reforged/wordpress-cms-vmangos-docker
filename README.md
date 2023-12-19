@@ -48,7 +48,13 @@ We can now check that our certificates mounted on the webserver container using 
 `docker-compose exec webserver ls -la /etc/letsencrypt/live`
 
 This will show the following directory
+
 `drwxr-xr-x    2 root     root          4096 Oct  5 09:15 your_domain`
+
+Then shutdown and restart your environment by using
+
+`docker compose down`
+`docker compose up -d`
 
 ## Vanilla Reforged Links
 
