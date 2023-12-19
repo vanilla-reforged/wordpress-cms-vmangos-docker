@@ -24,7 +24,7 @@ user@local:~$ cd lazycms-vmangos-docker
 
 At this point, you have to adjust the variables in the files:
 - `./.env`
-- `./vol/nginx.conf` (server_name section)
+- `./vol/nginx.conf` (server_name sections)
 - `./docker-compose.yml` (service drupal_certbot, command section)
 to fit your desired setup. 
 
