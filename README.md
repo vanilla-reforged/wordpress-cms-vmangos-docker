@@ -27,6 +27,7 @@ At this point, you have to adjust the variables in the files:
 - `./vol/ngix-conf/nginx.conf` (server_name sections and ssl certificate path)
 - `./vol/ngix-conf-setup/nginx.conf` (server_name sections)
 - `./docker-compose.yml` (service drupal_certbot, command section)
+- `./docker-compose-setup.yml`
 to fit your desired setup. 
 
 then execute the setup docker compose file
