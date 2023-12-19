@@ -53,6 +53,7 @@ This will show the following directory
 Then shutdown and restart your environment by using
 
 `docker compose down`
+
 `docker compose up -d`
 
 ## Vanilla Reforged Links
