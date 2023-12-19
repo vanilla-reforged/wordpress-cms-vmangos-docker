@@ -3,7 +3,7 @@
 ### Dependencies
 
 + docker
-+ docker-compose
++ docker compose
 
 ### Preface
 
@@ -44,7 +44,7 @@ If you see anything other than Up in the State column for the mysql, drupal, or 
 
 We can now check that our certificates mounted on the webserver container using the docker-compose exec command:
 
-`docker-compose exec webserver ls -la /etc/letsencrypt/live`
+`docker compose exec drupal_nginx ls -la /etc/letsencrypt/live`
 
 This will show the following directory
 
