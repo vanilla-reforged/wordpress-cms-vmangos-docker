@@ -39,14 +39,6 @@ Check the status of the services using the docker-compose ps command:
 
 We will see the mysql, drupal, and webserver services with a State of Up, while certbot will be exited with a 0 status message:
 
-`Output
-  Name                 Command               State           Ports
---------------------------------------------------------------------------
-certbot     certbot certonly --webroot ...   Exit 0
-drupal      docker-php-entrypoint php-fpm    Up       9000/tcp
-mysql       docker-entrypoint.sh --def ...   Up       3306/tcp, 33060/tcp
-webserver   nginx -g daemon off;             Up       0.0.0.0:80->80/tcp`
-
 If you see anything other than Up in the State column for the mysql, drupal, or webserver services, or an exit status other than 0 for the certbot container, be sure to check the service logs with the docker-compose logs command:
 
 `docker compose logs service_name`
@@ -55,14 +47,8 @@ We can now check that our certificates mounted on the webserver container using 
 
 `docker-compose exec webserver ls -la /etc/letsencrypt/live`
 
-This will give the following output:
-
-`Output
-total 16
-drwx------    3 root     root          4096 Oct  5 09:15 .
-drwxr-xr-x    9 root     root          4096 Oct  5 09:15 ..
--rw-r--r--    1 root     root           740 Oct  5 09:15 README
-drwxr-xr-x    2 root     root          4096 Oct  5 09:15 your_domain`
+This will show the following directory
+`drwxr-xr-x    2 root     root          4096 Oct  5 09:15 your_domain`
 
 ## Vanilla Reforged Links
 
