@@ -7,7 +7,11 @@
 
 ### Preface
 
-This a simple CMS to be used together with the vmangos-docker solution.
+This a simple CMS solution for vanilla wow servers.
+
+Using Docker and Drupal, heavily drawing form this guide:
+
+https://www.digitalocean.com/community/tutorials/how-to-install-drupal-with-docker-compose
 
 ### Instructions lazycms
 
