@@ -20,10 +20,3 @@ services:
     volumes:
         - ./vol/database:/var/lib/postgresql/data
     restart: unless-stopped
-
-volumes:
-  drupal_modules:
-  drupal_profiles:
-  drupal_themes:
-  drupal_sites:
-  database:
