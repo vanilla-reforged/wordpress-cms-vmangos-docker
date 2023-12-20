@@ -19,6 +19,13 @@ First, clone the repository and move into it.
 user@local:~$ git clone [https://github.com/vanilla-reforged/vmangos-docker](https://github.com/vanilla-reforged/lazycms-vmangos-docker/)
 user@local:~$ cd lazycms-vmangos-docker
 ```
+At this point, you have to adjust the `./.env` for your desired setup.
+
+Start your environment with:
+
+```sh
+user@local:vmangos-docker$ docker compose up -d
+```
 
 ## Vanilla Reforged Links
 
