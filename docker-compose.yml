@@ -12,7 +12,7 @@ services:
       - ./vol/drupal_themes:/var/www/html/themes
       - ./vol/drupal_sites:/var/www/html/sites
     restart: always
-    command: composer require 'drupal/webform_remote_handlers:^3.0'
+    command: bash -c "composer require 'drupal/webform_remote_handlers:^3.0'"
 
   drupal_database:
     container_name: drupal_database
