@@ -1,0 +1,9 @@
+  drupal_certbot:
+    depends_on:
+      - drupal_nginx
+    image: certbot/certbot
+    container_name: drupal_certbot
+    volumes:
+      - ./vol/certbot-etc:/etc/letsencrypt
+      - ./vol/drupal:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email sammy@your_domain --agree-tos --no-eff-email --force-renewal -d your_domain -d www.your_domain
