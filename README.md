@@ -9,9 +9,16 @@
 
 This a simple CMS solution for vanilla wow servers using Docker and Drupal, heavily drawing form this guide:
 
-
-
 ### Instructions lazycms
+
+### Instructions vmangos
+
+First, clone the repository and move into it.
+
+```sh
+user@local:~$ git clone [https://github.com/vanilla-reforged/vmangos-docker](https://github.com/vanilla-reforged/lazycms-vmangos-docker/)
+user@local:~$ cd lazycms-vmangos-docker
+```
 
 ## Vanilla Reforged Links
 
