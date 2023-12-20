@@ -3,9 +3,7 @@ version: '3.3'
 services:
   drupal:
     container_name: drupal
-    build:
-      context: .
-      dockerfile: docker/drupal/Dockerfile
+    image: drupal
     ports:
       - 80:80
     volumes:
