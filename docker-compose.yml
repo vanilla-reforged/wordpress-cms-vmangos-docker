@@ -2,8 +2,9 @@ version: '3.3'
 
 services:
   drupal:
-    container_name: drupal
-    image: drupal:latest
+    build:
+      context: .
+      dockerfile: docker/drupal/Dockerfile
     ports:
       - 80:80
     volumes:
@@ -12,7 +13,6 @@ services:
       - ./vol/drupal_themes:/var/www/html/themes
       - ./vol/drupal_sites:/var/www/html/sites
     restart: unless-stopped
-    command: sh -c "composer require 'drupal/webform_remote_handlers:^3.0'"
 
   drupal_database:
     container_name: drupal_database
