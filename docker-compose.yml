@@ -3,7 +3,7 @@ version: '3.3'
 services:
   drupal:
     container_name: drupal
-    image: drupal
+    image: drupal:10-php8.1
     ports:
       - 80:80
     volumes:
