@@ -11,7 +11,7 @@ services:
       - ./vol/drupal_profiles:/var/www/html/profiles
       - ./vol/drupal_themes:/var/www/html/themes
       - ./vol/drupal_sites:/var/www/html/sites
-    restart: always
+    restart: unless-stopped
     command: sh -c "composer require 'drupal/webform_remote_handlers:^3.0'"
 
   drupal_database:
@@ -20,7 +20,7 @@ services:
     env_file: .env
     volumes:
         - ./vol/database:/var/lib/postgresql/data
-    restart: always
+    restart: unless-stopped
 
 volumes:
   drupal_modules:
