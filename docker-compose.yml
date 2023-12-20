@@ -24,4 +24,4 @@ volumes:
   drupal_profiles:
   drupal_themes:
   drupal_sites:
-  db_data:
+  database:
