@@ -3,7 +3,7 @@
 ### Dependencies
 
 + docker
-+ docker compose
++ docker compose 2
 
 ### Preface
 
@@ -29,7 +29,7 @@ docker compose up -d
 
 ## Vanilla Reforged Links
 
-Find and join us on the web https://vanillareforged.org/en/
+Find and join us on the web https://vanillareforged.org/
 
 Support our efforts on Patreon https://www.patreon.com/vanillareforged
 
