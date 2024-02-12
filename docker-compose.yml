@@ -11,7 +11,6 @@ services:
       - ./vol/drupal_modules:/opt/drupal/web/modules
       - ./vol/drupal_profiles:/opt/drupal/web/profiles
       - ./vol/drupal_themes:/opt/drupal/web/themes
-      - ./vol/drupal_sites:/opt/drupal/web/sites
     restart: unless-stopped
 
   drupal_database:
