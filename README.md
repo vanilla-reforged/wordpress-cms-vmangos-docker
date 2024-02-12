@@ -29,6 +29,10 @@ docker compose up -d
 
 Then connect to your web address or IP to install Drupal.
 
+use variables set in .env file for DB specifics
+
+Set Hostname under advanced to drupal_database
+
 -> execute script 01 to install SOAP extension
 
 -> certbot
