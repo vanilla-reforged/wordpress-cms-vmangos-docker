@@ -6,6 +6,7 @@ services:
     image: drupal:10-php8.1
     ports:
       - 80:80
+      - 443:443
     volumes:
       - ./vol/drupal_modules:/var/www/html/modules
       - ./vol/drupal_profiles:/var/www/html/profiles
