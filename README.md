@@ -41,6 +41,8 @@ composer require 'drupal/webform_remote_handlers:^3.0'
 exit
 ```
 
+You can find the Module in the Drupal Admin Panel under Extend -> Filter by Webform Remote Handlers
+
 ## Vanilla Reforged Links
 
 Find and join us on the web https://vanillareforged.org/
