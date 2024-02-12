@@ -27,6 +27,24 @@ Start your environment with:
 docker compose up -d
 ```
 
+Attach to your Drupal container from the Docker host:
+
+```sh
+docker exec -it drupal /bin/bash
+```
+
+Copy the default.settings file to the location where drupal expects it:
+
+```sh
+cp /opt/drupal/web/core/assets/scaffold/files/default.settings.php /opt/drupal/web/sites/default/files/settings.php
+```
+
+Exit the container
+
+```sh
+exit
+```
+
 Then connect to your web address or IP to install Drupal.
 
 -> execute script 01 to install SOAP extension
