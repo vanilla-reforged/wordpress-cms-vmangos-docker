@@ -11,7 +11,7 @@ This a simple CMS solution for vanilla wow servers using Docker and Drupal, heav
 
 ### Instructions lazycms
 
-### Instructions vmangos
+FW rules: 80/443
 
 First, clone the repository and move into it.
 
@@ -26,6 +26,12 @@ Start your environment with:
 ```sh
 docker compose up -d
 ```
+
+Then connect to your web address or IP to install Drupal.
+
+-> execute script 01 to install SOAP extension
+
+-> certbot
 
 ## Vanilla Reforged Links
 
