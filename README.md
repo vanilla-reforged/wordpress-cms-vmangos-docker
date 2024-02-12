@@ -33,9 +33,13 @@ use variables set in .env file for DB specifics
 
 Set Hostname under advanced to drupal_database
 
--> execute script 01 to install SOAP extension
+Install web remote handlers for soap extension
 
--> certbot
+```sh
+docker exec -it drupal /bin/bash
+composer require 'drupal/webform_remote_handlers:^3.0'
+exit
+```
 
 ## Vanilla Reforged Links
 
