@@ -1,0 +1,6 @@
+FROM drupal:10-php8.1
+
+RUN { \
+    echo 'upload_max_filesize=64M'; \
+    echo 'post_max_size=64M'; \
+  } > /usr/local/etc/php/conf.d/uploads.ini
