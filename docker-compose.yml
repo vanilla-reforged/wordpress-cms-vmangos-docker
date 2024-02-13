@@ -10,8 +10,8 @@ services:
     volumes:
       - ./var/www/html/modules:/var/www/html/modules
       - ./var/www/html/profiles:/var/www/html/profiles
-      - ./var/www/html/themes:/var/www/html/theme
-      - ./var/www/html/sites:/var/www/html/theme
+      - ./var/www/html/themes:/var/www/html/themes
+      - ./var/www/html/sites:/var/www/html/sites
     restart: unless-stopped
 
   drupal_database:
