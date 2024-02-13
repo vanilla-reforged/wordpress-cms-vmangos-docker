@@ -23,6 +23,14 @@ At this point, you have to adjust the `./.env` for your desired setup.
 
 Start your environment with:
 
+You need to preseed the sites directory so it can be later bind mounted into the container.
+
+```sh
+docker run --rm drupal tar -cC /var/www/html/sites . | tar -xC ./sites
+```
+
+then start your environment with
+
 ```sh
 docker compose up -d
 ```
