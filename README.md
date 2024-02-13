@@ -48,6 +48,7 @@ docker exec -it drupal /bin/bash
 composer require 'drupal/webform_remote_handlers:^3.0'
 exit
 ```
+/usr/local/etc/php
 
 You can find the Module in the Drupal Admin Panel under Extend -> Filter by Webform Remote Handlers
 
