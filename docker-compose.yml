@@ -19,5 +19,5 @@ services:
     image: mariadb:latest
     env_file: .env
     volumes:
-        - ./vol/database:/var/lib/postgresql/data
+        - ./database:/var/lib/postgresql/data
     restart: unless-stopped
