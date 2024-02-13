@@ -12,7 +12,6 @@ services:
       - ./profiles:/var/www/html/profiles
       - ./themes:/var/www/html/themes
       - ./sites:/var/www/html/sites
-      - ./php:/usr/local/etc/php
     restart: unless-stopped
 
   drupal_database:
