@@ -7,13 +7,14 @@ services:
     ports:
       - 80:80
       - 443:443
+    environment:
+      UPLOAD_LIMIT: 64M
     volumes:
       - ./modules:/var/www/html/modules
       - ./profiles:/var/www/html/profiles
       - ./themes:/var/www/html/themes
       - ./sites:/var/www/html/sites
     restart: unless-stopped
-
   drupal_database:
     container_name: drupal_database
     image: mariadb:latest
