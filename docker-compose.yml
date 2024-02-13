@@ -3,12 +3,12 @@ version: '3.3'
 services:
   drupal:
     container_name: drupal
-    image: drupal:10-php8.1
+    build:
+      context: .
+      dockerfile: docker/drupal/Dockerfile
     ports:
       - 80:80
       - 443:443
-    environment:
-      UPLOAD_LIMIT: 64M
     volumes:
       - ./modules:/var/www/html/modules
       - ./profiles:/var/www/html/profiles
