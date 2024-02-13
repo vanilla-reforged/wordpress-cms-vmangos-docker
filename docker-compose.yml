@@ -15,6 +15,7 @@ services:
       - ./themes:/var/www/html/themes
       - ./sites:/var/www/html/sites
     restart: unless-stopped
+
   drupal_database:
     container_name: drupal_database
     image: mariadb:latest
