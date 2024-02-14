@@ -4,3 +4,5 @@ RUN { \
     echo 'upload_max_filesize=64M'; \
     echo 'post_max_size=64M'; \
   } > /usr/local/etc/php/conf.d/uploads.ini
+
+RUN composer create-project dxpr/dxpr-marketing-cms-project vanillareforged
