@@ -5,4 +5,9 @@ RUN { \
     echo 'post_max_size=64M'; \
   } > /usr/local/etc/php/conf.d/uploads.ini
 
+RUN \
+  apt-get update -y && \
+  apt-get install -y \
+    git \
+
 RUN composer create-project dxpr/dxpr-marketing-cms-project vanillareforged
