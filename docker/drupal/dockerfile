@@ -10,4 +10,4 @@ RUN \
   apt-get install -y \
     git
 
-RUN --rm -i --tty -v $PWD:/app composer create-project dxpr/dxpr-marketing-cms-project vanillareforged --ignore-platform-reqs
+RUN run --rm -i --tty -v $PWD:/app composer create-project dxpr/dxpr-marketing-cms-project vanillareforged --ignore-platform-reqs
