@@ -8,7 +8,4 @@ RUN { \
 RUN curl -sS https://getcomposer.org/installer | php -- \
 --install-dir=/usr/bin --filename=composer
 
-RUN apt-get install php-gd \
-/etc/init.d/apache2 restart
-
 RUN composer create-project dxpr/dxpr-marketing-cms-project:^10 web
