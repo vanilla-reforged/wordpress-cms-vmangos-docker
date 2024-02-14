@@ -18,5 +18,5 @@ services:
     image: mariadb:latest
     env_file: .env
     volumes:
-        - ./database:/var/lib/mysql
+        - ./var/lib/mysql:/var/lib/mysql
     restart: unless-stopped
