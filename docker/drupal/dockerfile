@@ -1,4 +1,4 @@
-FROM drupal:10-php8.1
+FROM drupal:10.2.3-php8.3
 
 RUN { \
     echo 'upload_max_filesize=64M'; \
