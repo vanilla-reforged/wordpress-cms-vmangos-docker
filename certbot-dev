@@ -4,6 +4,6 @@
     image: certbot/certbot
     container_name: drupal_certbot
     volumes:
-      - ./certbot-etc:/etc/letsencrypt
+      - ./etc/letsencrypt:/etc/letsencrypt
       - ./var/www/html:/var/www/html
     command: certonly --webroot --webroot-path=/var/www/html --email sammy@your_domain --agree-tos --no-eff-email --force-renewal -d your_domain -d www.your_domain
