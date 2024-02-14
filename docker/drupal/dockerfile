@@ -1,4 +1,4 @@
-FROM drupal:10.2.3-php8.3
+FROM php:8.2-fpm-alpine
 
 RUN { \
     echo 'upload_max_filesize=64M'; \
