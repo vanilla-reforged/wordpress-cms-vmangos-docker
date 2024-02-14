@@ -8,6 +8,6 @@ RUN { \
 RUN \
   apt-get update -y && \
   apt-get install -y \
-    git \
+    git
 
 RUN composer create-project dxpr/dxpr-marketing-cms-project vanillareforged
