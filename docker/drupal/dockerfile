@@ -9,3 +9,8 @@ RUN \
   apt-get update -y && \
   apt-get install -y \
     git
+
+RUN RUN curl -sS https://getcomposer.org/installer | php -- \
+--install-dir=/usr/bin --filename=composer
+
+RUN composer create-project dxpr/dxpr-marketing-cms-project my_site_name_dir
