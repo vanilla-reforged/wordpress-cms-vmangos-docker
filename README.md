@@ -37,6 +37,8 @@ docker compose up -d
 
 Then connect to your web address or IP to install Drupal.
 
+based on https://www.drupal.org/project/dxpr_marketing_cms
+
 use variables set in .env file for DB specifics
 
 Set Hostname under advanced to drupal_database
