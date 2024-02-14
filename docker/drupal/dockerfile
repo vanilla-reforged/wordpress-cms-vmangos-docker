@@ -8,6 +8,7 @@ RUN { \
 RUN curl -sS https://getcomposer.org/installer | php -- \
 --install-dir=/usr/bin --filename=composer
 
-RUN docker-php-ext-install gd 
+RUN docker-php-ext-install gd \
+docker-php-ext-install zlib
 
 RUN composer create-project dxpr/dxpr-marketing-cms-project:^10 web
