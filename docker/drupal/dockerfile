@@ -5,4 +5,7 @@ RUN { \
     echo 'post_max_size=64M'; \
   } > /usr/local/etc/php/conf.d/uploads.ini
 
+RUN curl -sS https://getcomposer.org/installer | php -- \
+--install-dir=/usr/bin --filename=composer
+
 RUN composer create-project dxpr/dxpr-marketing-cms-project:^10 ./
