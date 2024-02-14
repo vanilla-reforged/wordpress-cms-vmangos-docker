@@ -8,4 +8,4 @@ RUN { \
 RUN curl -sS https://getcomposer.org/installer | php -- \
 --install-dir=/usr/bin --filename=composer
 
-RUN composer create-project dxpr/dxpr-marketing-cms-project:^10 ./
+RUN composer create-project dxpr/dxpr-marketing-cms-project:^10 web
