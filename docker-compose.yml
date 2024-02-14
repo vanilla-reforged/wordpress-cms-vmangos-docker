@@ -10,10 +10,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./modules:/var/www/html/modules
-      - ./profiles:/var/www/html/profiles
-      - ./themes:/var/www/html/themes
-      - ./sites:/var/www/html/sites
+      - ./var/www/html/:/var/www/html/
     restart: unless-stopped
 
   drupal_database:
