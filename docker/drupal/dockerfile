@@ -1,5 +1,9 @@
 FROM php:8.3-fpm
 
+RUN apt-get update && \
+    apt-get install -y \
+        zlib1g-dev
+
 RUN { \
     echo 'upload_max_filesize=64M'; \
     echo 'post_max_size=64M'; \
@@ -8,7 +12,6 @@ RUN { \
 RUN curl -sS https://getcomposer.org/installer | php -- \
 --install-dir=/usr/bin --filename=composer
 
-RUN docker-php-ext-install zlib1g-dev
 RUN docker-php-ext-install gd
 
 RUN composer create-project dxpr/dxpr-marketing-cms-project:^10 web
