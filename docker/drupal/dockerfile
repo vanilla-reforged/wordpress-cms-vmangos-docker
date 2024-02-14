@@ -10,7 +10,4 @@ RUN \
   apt-get install -y \
     git
 
-RUN curl -sS https://getcomposer.org/installer | php -- \
---install-dir=/usr/bin --filename=composer
-
 RUN composer create-project dxpr/dxpr-marketing-cms-project vanillareforged
