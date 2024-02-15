@@ -2,10 +2,10 @@ version: '3.3'
 
 services:
   drupal:
-    container_name: drupal
+    container_name: wordpress
     build:
       context: .
-      dockerfile: docker/drupal/Dockerfile
+      dockerfile: docker/wordpress/Dockerfile
     ports:
       - 80:80
       - 443:443
@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
 
   drupal_database:
-    container_name: drupal_database
+    container_name: wordpress_database
     image: mariadb:latest
     env_file: .env
     volumes:
