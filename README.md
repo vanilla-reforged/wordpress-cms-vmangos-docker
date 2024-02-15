@@ -26,7 +26,9 @@ Then start your environment with:
 docker compose up -d
 ```
 
-Then connect to your IP or website name do the basic Setup.
+Then connect to your IP or website name to do the basic Setup.
+
+Install theme and Plugins as necessary
 
 ### WORDPRESS THEME
 
@@ -37,6 +39,10 @@ Twenty Seventeen
 Options Twenty Seventeen
 WP Encryption
 WP Snap in
+
+### PHP CODE REGISTRATION FORM
+
+
 
 ## Vanilla Reforged Links
 
