@@ -30,13 +30,17 @@ Then connect to your IP or website name to do the basic Setup.
 
 Install theme and Plugins as necessary
 
-### WORDPRESS THEME
+Dont forget to outcomment Port 80 in your docker-compose.yml once you have installed your SSL Certificate
 
-Twenty Seventeen
+```sh
+   ports:
+ #     - 80:80
+```
 
-### WORDPRESS PLUGINS USED
+### WORDPRESS THEME & PLUGINS
 
-Options Twenty Seventeen, WP Encryption, WPCode
+Theme: Twenty Seventeen
+Plugins: Options Twenty Seventeen, WP Encryption, WPCode
 
 ### PHP CODE REGISTRATION FORM
 
