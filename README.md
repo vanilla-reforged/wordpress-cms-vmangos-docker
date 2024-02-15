@@ -28,7 +28,23 @@ docker compose up -d
 
 Then connect to your IP or website name do the basic Setup.
 
-Once you finished the basic setup, outcomment the volume lines
+### Instructions certbot
+
+Once you finished the basic setup, outcomment the section
+
+```
+#    volumes:
+#      - ./var/www/html:/var/www/html
+```
+
+in  your docker-compose.yaml.
+
+Then restart your container with
+
+```sh
+docker compose down
+docker compose up -d
+```
 
 ## Vanilla Reforged Links
 
