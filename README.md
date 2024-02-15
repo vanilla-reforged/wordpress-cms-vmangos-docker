@@ -28,23 +28,15 @@ docker compose up -d
 
 Then connect to your IP or website name do the basic Setup.
 
-### Instructions certbot
+### WORDPRESS THEME
 
-Once you finished the basic setup, outcomment the section
+Twenty Seventeen
 
-```
-#    volumes:
-#      - ./var/www/html:/var/www/html
-```
+### WORDPRESS PLUGINS USED
 
-in  your docker-compose.yaml.
-
-Then restart your container with
-
-```sh
-docker compose down
-docker compose up -d
-```
+Options Twenty Seventeen
+WP Encryption
+WP Snap in
 
 ## Vanilla Reforged Links
 
