@@ -7,11 +7,9 @@
 
 ### Preface
 
-This a simple CMS solution for vanilla wow servers using Docker and Drupal, heavily drawing form this guide:
+This a simple CMS solution for vanilla wow servers using docker and wordpress.
 
 ### Instructions lazycms
-
-FW rules: 80/443
 
 First, clone the repository and move into it.
 
@@ -19,40 +17,15 @@ First, clone the repository and move into it.
 git clone https://github.com/vanilla-reforged/lazycms-vmangos-docker/
 cd lazycms-vmangos-docker
 ```
+
 At this point, you have to adjust the `./.env` for your desired setup.
 
-Start your environment with:
-
-You need to preseed the sites directory so it can be later bind mounted into the container.
-
-```sh
-docker run --rm drupal tar -cC /var/www/html/sites . | tar -xC ./sites
-```
-
-then start your environment with
+Then start your environment with:
 
 ```sh
 docker compose up -d
 ```
 
-Then connect to your web address or IP to install Drupal.
-
-based on https://www.drupal.org/project/dxpr_marketing_cms
-
-use variables set in .env file for DB specifics
-
-Set Hostname under advanced to drupal_database
-
-Install web remote handlers for soap extension
-
-```sh
-docker exec -it drupal /bin/bash
-composer require 'drupal/webform_remote_handlers:^3.0'
-exit
-```
-/usr/local/etc/php
-
-You can find the Module in the Drupal Admin Panel under Extend -> Filter by Webform Remote Handlers
 
 ## Vanilla Reforged Links
 
