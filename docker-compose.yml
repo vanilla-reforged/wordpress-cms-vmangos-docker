@@ -3,11 +3,9 @@ version: '3.3'
 services:
   wordpress:
     container_name: wordpress
-    build:
-      context: .
-      dockerfile: docker/wordpress/Dockerfile
+    image: wordpress:latest
     ports:
-#      - 80:80
+      - 80:80
       - 443:443
     volumes:
       - ./var/www/html:/var/www/html
