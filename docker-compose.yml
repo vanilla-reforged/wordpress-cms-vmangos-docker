@@ -9,11 +9,11 @@ services:
     ports:
       - 80:80
       - 443:443
-#    volumes:
-#      - ./var/www/html:/var/www/html
+    volumes:
+      - ./var/www/html:/var/www/html
     restart: unless-stopped
 
-  drupal_database:
+  wordpress_database:
     container_name: wordpress_database
     image: mariadb:latest
     env_file: .env
