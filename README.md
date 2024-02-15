@@ -36,9 +36,7 @@ Twenty Seventeen
 
 ### WORDPRESS PLUGINS USED
 
-Options Twenty Seventeen
-WP Encryption
-WP Snap in
+Options Twenty Seventeen, WP Encryption, WPCode
 
 ### PHP CODE REGISTRATION FORM
 
