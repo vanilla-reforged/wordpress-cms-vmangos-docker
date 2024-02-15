@@ -26,6 +26,9 @@ Then start your environment with:
 docker compose up -d
 ```
 
+Then connect to your IP or website name do the basic Setup.
+
+Once you finished the basic setup, outcomment the volume lines
 
 ## Vanilla Reforged Links
 
