@@ -9,6 +9,8 @@
 
 This a simple CMS solution for vanilla wow servers using docker and wordpress.
 
+Result: https://vanillareforged.org/
+
 ### Instructions lazycms
 
 First, clone the repository and move into it.
