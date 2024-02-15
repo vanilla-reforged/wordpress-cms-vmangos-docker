@@ -20,6 +20,7 @@ services:
     volumes:
         - ./var/lib/mysql:/var/lib/mysql
     restart: unless-stopped
+
   wordpress_certbot:
     depends_on:
       - wordpress
