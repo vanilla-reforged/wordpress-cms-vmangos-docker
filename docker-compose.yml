@@ -24,7 +24,7 @@ services:
     depends_on:
       - wordpress
     image: certbot/certbot
-    container_name: drupal_certbot
+    container_name: wordpress_certbot
     volumes:
       - ./etc/letsencrypt:/etc/letsencrypt
       - ./var/www/html:/var/www/html
