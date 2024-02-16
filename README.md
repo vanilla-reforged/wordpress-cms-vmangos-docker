@@ -29,23 +29,24 @@ Then start your environment with:
 docker compose up -d
 ```
 
-### Wordpress Basic Setup
+### Wordpress basic setup
 
-1) Connect to your IP or website address to start the wordpress installation: 
+## Connect to your IP or website address to start the wordpress installation: 
 - Use the sql user and database name from your .env file.
 - The database hostname is wordpress_database.
 
-2) Install themes and plugins:
+## Install theme and plugins:
 Theme: Twenty Seventeen
 Plugins: Options Twenty Seventeen, Updraftplus, WP Encryption, WPCode
 
-3) Setup WP Encryption Plugin
-- If you don't want a pro subscription, copy the generated certificates to [docker directory]/var/html/www/keys
+## Setup WP Encryption plugin:
+- If you don't want a pro subscription, copy the generated certificates to [docker directory]/var/html/www/keys.
 
-4) Setup Updraftplus Backup and do an initial backup
-- Self explanatory
+## Setup Updraftplus Backup and do an initial backup:
 
-5) Set up Registration Page
+## Set up registration page:
+- Create new page to be used as registration page.
+- 
 
 ### PHP CODE REGISTRATION FORM
 
