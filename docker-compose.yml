@@ -7,6 +7,8 @@ services:
     ports:
       - 80:80
       - 443:443
+    volumes:
+      - ./var/www/html:/var/www/html
     restart: unless-stopped
 
   wordpress_database:
