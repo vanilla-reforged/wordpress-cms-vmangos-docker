@@ -9,9 +9,10 @@ services:
     container_name: wordpress
     labels:
      - "traefik.enable=true"
-     - "traefik.http.routers.web.entrypoints=websecure"
-     - "traefik.http.routers.web.rule=Host(`vanillareforged.org`)"
-     - "traefik.http.routers.web.tls=true"
+     - "traefik.http.routers.wordpress.entrypoints=websecure"
+     - "traefik.http.routers.wordpress.rule=Host(`vanillareforged.org`)"
+     - "traefik.http.routers.wordpress.tls=true"
+     - "traefik.https.routers.wordpress.tls.certresolver=staging"
     image: wordpress:latest
     networks:
      - vmangos-network
