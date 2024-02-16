@@ -12,6 +12,7 @@ This a simple CMS solution for vanilla wow servers using docker and wordpress.
 Result: https://vanillareforged.org/
 
 ### Instructions lazycms
+### Docker Setup
 
 First, clone the repository and move into it.
 
@@ -28,24 +29,23 @@ Then start your environment with:
 docker compose up -d
 ```
 
-Then connect to your IP or website name to do the basic Setup (sql user and db from .env, db host is wordpress_database)
+### Wordpress Basic Setup
 
-Install theme and Plugins as necessary
+1) Connect to your IP or website address to start the wordpress installation: 
+- Use the sql user and database name from your .env file.
+- The database hostname is wordpress_database.
 
-Dont forget to outcomment Port 80 in your docker-compose.yml once you have installed your SSL Certificate with WP Encryption.
-
-```sh
-   ports:
- #     - 80:80
-```
-
-Also don't forget to back up your site with Updraftplus.
-
-### WORDPRESS THEME & PLUGINS
-
+2) Install themes and plugins:
 Theme: Twenty Seventeen
-
 Plugins: Options Twenty Seventeen, Updraftplus, WP Encryption, WPCode
+
+3) Setup WP Encryption Plugin
+- If you don't want a pro subscription, copy the generated certificates to [docker directory]/var/html/www/keys
+
+4) Setup Updraftplus Backup and do an initial backup
+- Self explanatory
+
+5) Set up Registration Page
 
 ### PHP CODE REGISTRATION FORM
 
