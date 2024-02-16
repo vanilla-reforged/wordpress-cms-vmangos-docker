@@ -1,5 +1,9 @@
 version: '3.3'
 
+networks:
+  vmangos-network:
+    external: true
+
 services:
   wordpress:
     container_name: wordpress
@@ -15,7 +19,3 @@ services:
     image: mariadb:latest
     env_file: .env
     restart: unless-stopped
-
-networks:
-  vmangos-network:
-    external: true
