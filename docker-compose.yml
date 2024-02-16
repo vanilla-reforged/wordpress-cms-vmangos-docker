@@ -11,6 +11,7 @@ services:
      - "traefik.enable=true"
      - "traefik.http.routers.web.entrypoints=web"
      - "traefik.http.routers.web.rule=Host(`vanillareforged.org`)"
+     - "traefik.http.routers.web.tls=true"
     image: wordpress:latest
     networks:
      - vmangos-network
