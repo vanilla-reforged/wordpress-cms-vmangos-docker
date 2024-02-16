@@ -12,7 +12,7 @@ services:
      - "traefik.http.routers.wordpress.entrypoints=web, websecure"
      - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`)"
 #     - "traefik.http.routers.wordpress.tls=true"
-     - "traefik.https.routers.wordpress.tls.certresolver=production"
+#     - "traefik.https.routers.wordpress.tls.certresolver=production"
     image: wordpress:latest
     networks:
      - vmangos-network
