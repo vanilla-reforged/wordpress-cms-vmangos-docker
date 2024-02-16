@@ -1,4 +1,4 @@
-ureversion: '3.3'
+reversion: '3.3'
 
 networks:
    vmangos-network:
