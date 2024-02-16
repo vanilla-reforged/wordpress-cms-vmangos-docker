@@ -16,8 +16,6 @@ services:
      - traefik.http.routers.wordpress.middlewares=wordpressredirec
      - traefik.http.routers.wordpress.tls.certresolver=production
     image: wordpress:latest
-    expose:
-     - 80
     networks:
      - vmangos-network
     restart: unless-stopped
