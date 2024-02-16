@@ -35,19 +35,24 @@ docker compose up -d
 - Use the sql user and database name from your .env file.
 - The database hostname is wordpress_database.
 
+
 #### Install theme and plugins:
 Theme: Twenty Seventeen
 
 Plugins: Options Twenty Seventeen, Updraftplus, WP Encryption, WPCode
 
+
 #### Setup WP Encryption plugin:
 - If you don't want a pro subscription, copy the generated certificates to [docker directory]/var/html/www/keys.
 
+
 #### Setup Updraftplus Backup and do an initial backup:
+
 
 #### Set up registration page:
 - Create new page to be used as registration page.
 - 
+
 
 ### PHP CODE REGISTRATION FORM
 
