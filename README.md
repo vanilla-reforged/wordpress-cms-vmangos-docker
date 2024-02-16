@@ -62,10 +62,3 @@ Plugins: Options Twenty Seventeen, Updraftplus, Really Simple SSL, WPCode
 Find and join us on the web https://vanillareforged.org/
 
 Support our efforts on Patreon https://www.patreon.com/vanillareforged
-
-## Links
-
-- [vmangos](https://github.com/vmangos/core)
-- [Drupal]
-- [Drupal with Docker Compose](https://www.digitalocean.com/community/tutorials/how-to-install-drupal-with-docker-compose)
-- [Webform Remote Handlers](https://www.drupal.org/project/webform_remote_handlers)
