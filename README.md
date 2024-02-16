@@ -29,6 +29,15 @@ Then start your environment with:
 docker compose up -d
 ```
 
+traefik comment magic
+
+As Wordpress does not like Traefik you will ned to add this line of code before <?
+
+if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
+    $_SERVER['HTTPS'] = 'on';
+}
+
+
 ### Wordpress basic setup
 
 #### Connect to your IP or website address to start the wordpress installation: 
