@@ -12,7 +12,7 @@ services:
      - "traefik.http.routers.wordpress.entrypoints=websecure"
      - "traefik.http.routers.wordpress.rule=Host(`vanillareforged.org`)"
      - "traefik.http.routers.wordpress.tls=true"
-     - "traefik.https.routers.wordpress.tls.certresolver=staging"
+     - "traefik.https.routers.wordpress.tls.certresolver=production"
     image: wordpress:latest
     networks:
      - vmangos-network
