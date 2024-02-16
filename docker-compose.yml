@@ -1,8 +1,5 @@
 version: '3.3'
 
-networks:
-  vmangos-network:
-
 services:
   wordpress:
     container_name: wordpress
@@ -11,10 +8,14 @@ services:
      - "traefik.http.routers.web.entrypoints=web"
      - "traefik.http.routers.web.rule=Host(`vanillareforged.org`)"
     image: wordpress:latest
+    networks:
+     - vmangos-network
     restart: unless-stopped
 
   wordpress_database:
     container_name: wordpress_database
     image: mariadb:latest
     env_file: .env
+    networks:
+     - vmangos-network
     restart: unless-stopped
