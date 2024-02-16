@@ -9,10 +9,11 @@ services:
     container_name: wordpress
     labels:
      - "traefik.enable=true"
-     - "traefik.http.routers.wordpress.entrypoints=web, websecure"
+#     - "traefik.http.routers.wordpress.entrypoints=web"
+     - "traefik.http.routers.wordpress.entrypoints=web"
      - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`)"
-     - "traefik.http.routers.wordpress.tls=true"
-     - "traefik.http.routers.wordpress.tls.certresolver=production"
+#     - "traefik.http.routers.wordpress.tls=true"
+#     - "traefik.http.routers.wordpress.tls.certresolver=production"
     image: wordpress:latest
     volumes:
       - ./var/www/html:/var/www/html
