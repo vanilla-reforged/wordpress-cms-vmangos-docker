@@ -1,4 +1,4 @@
-version: '3.3'
+ureversion: '3.3'
 
 networks:
    vmangos-network:
@@ -9,7 +9,7 @@ services:
     container_name: wordpress
     labels:
      - "traefik.enable=true"
-     - "traefik.http.routers.web.entrypoints=web"
+     - "traefik.http.routers.web.entrypoints=websecure"
      - "traefik.http.routers.web.rule=Host(`vanillareforged.org`)"
      - "traefik.http.routers.web.tls=true"
     image: wordpress:latest
