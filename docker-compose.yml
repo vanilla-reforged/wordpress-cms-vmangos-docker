@@ -8,11 +8,11 @@ services:
   wordpress:
     container_name: wordpress
     labels:
-     - traefik.enable=true
-     - traefik.http.routers.wordpress.entrypoints=web, websecure
-     - traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`)
-     - traefik.http.routers.wordpress.tls=true
-     - traefik.http.routers.wordpress.certresolver=production
+     - "traefik.enable=true"
+     - "traefik.http.routers.wordpress.entrypoints=web, websecure"
+     - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`)"
+     - "traefik.http.routers.wordpress.tls=true"
+     - "traefik.http.routers.wordpress.certresolver=production"
     image: wordpress:latest
     volumes:
       - ./var/www/html:/var/www/html
