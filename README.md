@@ -39,11 +39,10 @@ docker compose up -d
 #### Install theme and plugins:
 Theme: Twenty Seventeen
 
-Plugins: Options Twenty Seventeen, Updraftplus, WP Encryption, WPCode
+Plugins: Options Twenty Seventeen, Updraftplus, Really Simple SSL, WPCode
 
 
-#### Setup WP Encryption plugin:
-- If you don't want a pro subscription, copy the generated certificates to [docker directory]/var/html/www/keys.
+#### SSL
 
 
 #### Setup Updraftplus Backup and do an initial backup:
@@ -51,7 +50,7 @@ Plugins: Options Twenty Seventeen, Updraftplus, WP Encryption, WPCode
 
 #### Set up registration page:
 - Create new page to be used as registration page.
-- 
+
 
 
 ### PHP CODE REGISTRATION FORM
