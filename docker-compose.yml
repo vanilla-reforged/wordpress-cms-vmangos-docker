@@ -9,13 +9,13 @@ services:
     container_name: wordpress
     labels:
      - "traefik.enable=true"
+      - "traefik.http.routers.web.entrypoints=web"
+      - "traefik.http.routers.web.rule=Host(`vanillareforged.org`)"
     image: wordpress:latest
     restart: unless-stopped
 
   wordpress_database:
     container_name: wordpress_database
-    labels:
-     - "traefik.enable=true"
     image: mariadb:latest
     env_file: .env
     restart: unless-stopped
