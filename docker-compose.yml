@@ -7,11 +7,15 @@ networks:
 services:
   wordpress:
     container_name: wordpress
+    labels:
+     - "traefik.enable=true"
     image: wordpress:latest
     restart: unless-stopped
 
   wordpress_database:
     container_name: wordpress_database
+    labels:
+     - "traefik.enable=true"
     image: mariadb:latest
     env_file: .env
     restart: unless-stopped
