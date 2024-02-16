@@ -28,7 +28,7 @@ Then start your environment with:
 docker compose up -d
 ```
 
-Then connect to your IP or website name to do the basic Setup.
+Then connect to your IP or website name to do the basic Setup (sql user and db from .env, db host is wordpress_database)
 
 Install theme and Plugins as necessary
 
