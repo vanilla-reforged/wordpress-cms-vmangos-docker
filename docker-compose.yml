@@ -14,6 +14,8 @@ services:
      - traefik.http.routers.wordpress.tls=true
      - traefik.http.routers.wordpress.certresolver=production
     image: wordpress:latest
+     volumes:
+      - ./var/www:/var/www
     networks:
      - vmangos-network
     restart: unless-stopped
