@@ -2,6 +2,7 @@ version: '3.3'
 
 networks:
    vmangos-network:
+     external: true
 
 services:
   wordpress:
