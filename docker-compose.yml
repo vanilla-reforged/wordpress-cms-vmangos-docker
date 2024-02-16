@@ -9,8 +9,8 @@ services:
     container_name: wordpress
     labels:
      - "traefik.enable=true"
-      - "traefik.http.routers.web.entrypoints=web"
-      - "traefik.http.routers.web.rule=Host(`vanillareforged.org`)"
+     - "traefik.http.routers.web.entrypoints=web"
+     - "traefik.http.routers.web.rule=Host(`vanillareforged.org`)"
     image: wordpress:latest
     restart: unless-stopped
 
