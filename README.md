@@ -32,12 +32,14 @@ Then connect to your IP or website name to do the basic Setup.
 
 Install theme and Plugins as necessary
 
-Dont forget to outcomment Port 80 in your docker-compose.yml once you have installed your SSL Certificate
+Dont forget to outcomment Port 80 in your docker-compose.yml once you have installed your SSL Certificate with WP Encryption.
 
 ```sh
    ports:
  #     - 80:80
 ```
+
+Also don't forget to back up your site with Updraftplus.
 
 ### WORDPRESS THEME & PLUGINS
 
