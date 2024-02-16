@@ -37,6 +37,7 @@ docker compose up -d
 
 #### Install theme and plugins:
 Theme: Twenty Seventeen
+
 Plugins: Options Twenty Seventeen, Updraftplus, WP Encryption, WPCode
 
 #### Setup WP Encryption plugin:
