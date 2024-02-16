@@ -43,7 +43,7 @@ Dont forget to outcomment Port 80 in your docker-compose.yml once you have insta
 
 Theme: Twenty Seventeen
 
-Plugins: Options Twenty Seventeen, WP Encryption, WPCode
+Plugins: Options Twenty Seventeen, Updraftplus, WP Encryption, WPCode
 
 ### PHP CODE REGISTRATION FORM
 
