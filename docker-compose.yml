@@ -17,7 +17,7 @@ services:
      - traefik.http.routers.wordpress.tls.certresolver=production
     image: wordpress:latest
     expose:
-     - 443
+     - 80
     networks:
      - vmangos-network
     restart: unless-stopped
