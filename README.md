@@ -48,10 +48,7 @@ if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
 #### Install theme and plugins:
 Theme: Twenty Seventeen
 
-Plugins: Options Twenty Seventeen, Updraftplus, Really Simple SSL, WPCode
-
-
-#### SSL
+Plugins: Options Twenty Seventeen, Updraftplus, WPCode
 
 
 #### Setup Updraftplus Backup and do an initial backup:
