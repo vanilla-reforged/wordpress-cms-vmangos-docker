@@ -8,8 +8,6 @@ services:
   wordpress:
     container_name: wordpress
     image: wordpress:latest
-    expose:
-      - 80
     restart: unless-stopped
 
   wordpress_database:
