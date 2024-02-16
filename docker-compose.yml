@@ -4,11 +4,8 @@ services:
   wordpress:
     container_name: wordpress
     image: wordpress:latest
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./var/www/html:/var/www/html
+    expose:
+      - 80
     restart: unless-stopped
 
   wordpress_database:
