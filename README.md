@@ -123,7 +123,7 @@ Use the WPCode plugin to create following code snippet (adjust fields to fit you
 
 ```sh
 // Include config file
-require_once "register.php";
+require_once get_home_path() . '/register.php';
 
 // Define variables and initialize with empty values
 $username = $password = $email = "";
