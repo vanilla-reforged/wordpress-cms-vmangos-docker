@@ -115,7 +115,6 @@ if($link === false){
 Use the WPCode plugin to create following code snippet (adjust fields to fit your installation).
 
 ```sh
-<?php
 // Include config file
 require_once "register.php";
 
