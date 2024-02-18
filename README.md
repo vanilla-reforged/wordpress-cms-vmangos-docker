@@ -286,9 +286,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>    
 </body>
 </html>
-```sh
-
-
+```
 
 #### Used themes and plugins for https://www.vanillareforged.org/:
 Theme: Twenty Seventeen
