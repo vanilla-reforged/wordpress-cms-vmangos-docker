@@ -16,7 +16,7 @@ services:
 #     - "traefik.http.routers.wordpress.tls.certresolver=production"
     build:
       context: .
-      dockerfile: docker/database/Dockerfile 
+      dockerfile: docker/wordpress/Dockerfile 
     volumes:
       - ./var/www/html:/var/www/html
     networks:
