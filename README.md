@@ -1,5 +1,9 @@
 # lazycms-vmangos-docker
 
+### Before you dive in
+
+
+
 ### Dependencies
 
 + docker
@@ -29,39 +33,33 @@ Then start your environment with:
 docker compose up -d
 ```
 
-traefik comment magic
+#### Connect to your IP or website address to do the basic wordpress setup:
 
-As Wordpress does not like Traefik you will ned to add this line of code before <?
-
-if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
-    $_SERVER['HTTPS'] = 'on';
-}
-
-
-### Wordpress basic setup
-
-#### Connect to your IP or website address to start the wordpress installation: 
 - Use the sql user and database name from your .env file.
 - The database hostname is wordpress_database.
 
+#### Edit your wp-config.php file, so wordpress can be reached behind a reverse proxy:
 
-#### Install theme and plugins:
-Theme: Twenty Seventeen
+Open your wp-config.php file located in var/www/html in your lazycms-vmangos-docker directory.
 
-Plugins: Options Twenty Seventeen, Updraftplus, WPCode
+Add this code at the beginning of the file right after "<?php":
 
+```sh
+if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
+    $_SERVER['HTTPS'] = 'on';
+}
+```
 
-#### Setup Updraftplus Backup and do an initial backup:
+#### Install WPCode Plugin & create Page to be used for Registration:
 
-
-#### Set up registration page:
-- Create new page to be used as registration page.
-
-
+Use official Wordpress documentation if you need help with this.
 
 ### PHP CODE REGISTRATION FORM
 
+#### Used themes and plugins for https://www.vanillareforged.org/:
+Theme: Twenty Seventeen
 
+Plugins: Options Twenty Seventeen, Updraftplus, WPCode
 
 ## Vanilla Reforged Links
 
