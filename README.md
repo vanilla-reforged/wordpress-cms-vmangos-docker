@@ -89,6 +89,10 @@ Use official Wordpress documentation if you need help with this.
 
 ### PHP CODE REGISTRATION FORM
 
+Taken from https://github.com/vmangos/WallRegistrationPage/, shoutout to WallCraft (https://www.wallcraft.org/)!
+
+
+
 #### Used themes and plugins for https://www.vanillareforged.org/:
 Theme: Twenty Seventeen
 
