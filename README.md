@@ -89,6 +89,13 @@ Use official Wordpress documentation if you need help with this.
 
 ### PHP CODE REGISTRATION FORM
 
+use this code snipped to see your docker container ip addresses:
+
+```sh
+docker inspect $(docker ps -q ) \
+--format='{{ printf "%-50s" .Name}} {{range .NetworkSettings.Networks}}{{.IPAddress}} {{end}}'
+```
+
 Taken from https://github.com/vmangos/WallRegistrationPage/, shoutout to WallCraft (https://www.wallcraft.org/)!
 
 create a register.php file in your var/www/html directory, input the following code (adjust fields to fit your installation).
