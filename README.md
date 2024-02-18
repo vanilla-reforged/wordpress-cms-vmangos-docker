@@ -50,6 +50,39 @@ if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
 }
 ```
 
+#### If you want to use traefik to get free SSL certificates through letsencrypt and switch to HTTPS for you Wordpress installation:
+
+Switch the comments in your docker-compose.yml from
+
+```sh
+    labels:
+     - "traefik.enable=true"
+     - "traefik.http.routers.wordpress.entrypoints=web"
+#     - "traefik.http.routers.wordpress.entrypoints=websecure"
+     - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
+#     - "traefik.http.routers.wordpress.tls=true"
+#     - "traefik.http.routers.wordpress.tls.certresolver=production"
+```
+
+to
+
+```sh
+    labels:
+     - "traefik.enable=true"
+#     - "traefik.http.routers.wordpress.entrypoints=web"
+     - "traefik.http.routers.wordpress.entrypoints=websecure"
+     - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
+     - "traefik.http.routers.wordpress.tls=true"
+     - "traefik.http.routers.wordpress.tls.certresolver=production"
+```
+
+then restart your environment with:
+
+```sh
+docker compose down
+docker compose up -d
+```
+
 #### Install WPCode Plugin & create Page to be used for Registration:
 
 Use official Wordpress documentation if you need help with this.
