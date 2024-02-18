@@ -14,7 +14,9 @@ services:
      - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
 #     - "traefik.http.routers.wordpress.tls=true"
 #     - "traefik.http.routers.wordpress.tls.certresolver=production"
-    image: wordpress:latest
+    build:
+      context: .
+      dockerfile: docker/database/Dockerfile 
     volumes:
       - ./var/www/html:/var/www/html
     networks:
