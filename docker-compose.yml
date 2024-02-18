@@ -15,7 +15,6 @@ services:
 #     - "traefik.http.routers.wordpress.tls=true"
 #     - "traefik.http.routers.wordpress.tls.certresolver=production"
     image: wordpress:latest
-    command: docker-php-ext-install soap
     volumes:
       - ./var/www/html:/var/www/html
     networks:
