@@ -101,15 +101,15 @@ Taken from https://github.com/vmangos/WallRegistrationPage/, shoutout to WallCra
 Use the WPCode plugin to create following code snippet (adjust fields to fit your installation).
 
 ```sh
-/* Database credentials. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
-define('DB_SERVER', 'enter your IP & port here - ex. 127.0.0.1:3306');
+/* Database credentials. Assuming you are running mariadb
+server with default setting vmangos-docker (user 'mangos' with defined password) */
+define("DB_HOST_VMANGOS", "vmangos_database");
 define('DB_USERNAME', 'enter your DB username here');
 define('DB_PASSWORD', 'enter your DB password here');
 define('DB_NAME', 'enter your realmd DB name here');
  
 /* Attempt to connect to MySQL database */
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$link = mysqli_connect(DB_HOST_VMANGOS, DB_USERNAME_VMANGOS, DB_PASSWORD_VMANGOS, DB_NAME_VMANGOS);
  
 // Check connection
 if($link === false){
@@ -121,7 +121,7 @@ $username = $password = $email = "";
 $username_err = $password_err = $email_err = ""; 
 $regname = 'Enter registration handler account name here'; //  (create gmlvl 6 account, enable soap in mangosd.conf - soap uses a dummy gm account to handle registration)
 $regpass = 'Enter registration handler account pass here';
-$host = "Enter Host IP here - ex 127.0.0.1";
+$host = "vmangos_mangos";
 $soapport = 7878;
 $command = "account create {USERNAME} {PASSWORD}";
 $result = "";
@@ -262,8 +262,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </td></tr>	
 			<tr><td>
                 <label>Verify:</label>
+				
+				
 			</td><td>
-                <input type="password" name="passver" class="form-control <?php echo (!empty($passver_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $pass_ver; ?>">
+                <input type="password" name="passver" class="form-control <?php echo (!empty($passver_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
             </td><td>
 				<span class="invalid-feedback"><?php echo $password_err; ?></span>
             </td></tr>				
