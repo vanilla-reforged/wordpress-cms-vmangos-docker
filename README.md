@@ -92,7 +92,6 @@ Use official Wordpress documentation if you need help with this.
 Taken from https://github.com/vmangos/WallRegistrationPage/, shoutout to WallCraft (https://www.wallcraft.org/)!
 
 ```sh
-<?php
 /* Database credentials. Assuming you are running MySQL
 server with default setting (user 'root' with no password) */
 define('DB_SERVER', 'enter your IP & port here - ex. 127.0.0.1:3306');
@@ -107,7 +106,6 @@ $link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
-?>
 ```
 
 ```sh
