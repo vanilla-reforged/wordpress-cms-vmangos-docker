@@ -91,6 +91,8 @@ Use official Wordpress documentation if you need help with this.
 
 Taken from https://github.com/vmangos/WallRegistrationPage/, shoutout to WallCraft (https://www.wallcraft.org/)!
 
+create a register.php file in your var/www/html directory, input the following code (adjust fields to fit your installation).
+
 ```sh
 <?php
 /* Database credentials. Assuming you are running MySQL
@@ -109,6 +111,8 @@ if($link === false){
 }
 ?>
 ```
+
+Use the WPCode plugin to create following code snippet (adjust fields to fit your installation).
 
 ```sh
 <?php
