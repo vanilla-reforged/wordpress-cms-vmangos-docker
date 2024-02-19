@@ -328,11 +328,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
 				<input type="submit" class="clicker" value="Submit">
 			<table>
-            <h3>Already have an account?</h3>
-	<tr><p><h4><input type="button" class="clicker" onclick="location.href='login.php';" value="Login here" /></p></tr></h4></p></tr>
-			<tr><span class="invalid-feedback"><?php echo $result; ?></span></tr>
-			</table>
-			</div>
         </form>
     </div>    
 </body>
