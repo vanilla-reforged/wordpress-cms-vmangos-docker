@@ -120,8 +120,8 @@ Use official WordPress documentation if you need help with this.
 
 ### Registration form using the WordPress WPCode Plugin and PHP
 
-Use the WPCode plugin to create the following code snippet (adjust fields to fit your installation). Edit it as necessary to fit your purpose.
-Taken from [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/) and edited with hostnames as they are expected in the `vmangos-docker` configuration. Shoutout to [WallCraft](https://www.wallcraft.org/)!
+Use the WPCode plugin to create the following code snippet (adjust fields to fit your installation) and insert it into your Registration Page.
+Taken from [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/). Shoutout to [WallCraft](https://www.wallcraft.org/)!
 
 ```sh
 /* Database credentials. Assuming you are running mariadb
@@ -312,7 +312,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>    
 </body>
 </html>
-´´´
+```
 
 ## Vanilla Reforged Links
 
