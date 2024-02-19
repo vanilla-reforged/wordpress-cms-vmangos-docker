@@ -1,5 +1,13 @@
 # lazycms-vmangos-docker
 
+This a simple CMS solution for vanilla wow servers using Docker, Wordpress and a Traefik reverse proxy for free SSL certificates.
+
+Theme: Twenty Seventeen
+
+Plugins: Options Twenty Seventeen, Updraftplus, WPCode
+
+Result: https://vanillareforged.org/
+
 ## Dependencies
 
 + docker
@@ -23,16 +31,6 @@ Lazycms public access:
 ufw route allow proto tcp from any to any port 80
 ufw route allow proto tcp from any to any port 443
 ```
-
-### Preface
-
-This a simple CMS solution for vanilla wow servers using Docker, Wordpress and a Traefik reverse proxy for free SSL certificates.
-
-Theme: Twenty Seventeen
-
-Plugins: Options Twenty Seventeen, Updraftplus, WPCode
-
-Result: https://vanillareforged.org/
 
 ### Docker Setup
 
