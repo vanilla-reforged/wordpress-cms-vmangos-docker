@@ -67,8 +67,8 @@ entryPoints:
 #           - "8.8.8.8:53"
 
 #-- (Optional) Disable TLS Cert verification check
-serversTransport:
-  insecureSkipVerify: true
+#serversTransport:
+#  insecureSkipVerify: true
 
 #-- (Optional) Overwrite Default Certificates
 #tls:
