@@ -23,12 +23,6 @@ global:
 
 # -- Change EntryPoints here...
 entryPoints:
-  vmangos_database:
-    address: :3306
-  vmangos_realmd:
-    address: :3724
-  vmangos_mangos:
-    address: :8085
   web:
     address: :80
     # -- (Optional) Redirect all HTTP to HTTPS
