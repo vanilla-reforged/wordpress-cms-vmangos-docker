@@ -28,10 +28,11 @@ ufw route allow proto tcp from any to any port 443
 
 This a simple CMS solution for vanilla wow servers using docker, wordpress and a traefik reverse proxy for free SSL certificates.
 
-Result: https://vanillareforged.org/
-
 Theme: Twenty Seventeen
+
 Plugins: Options Twenty Seventeen, Updraftplus, WPCode
+
+Result: https://vanillareforged.org/
 
 ### Instructions lazycms
 ### Docker Setup
