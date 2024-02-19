@@ -1,23 +1,23 @@
 ### lazycms-vmangos-docker
 
-This is a simple CMS solution for vanilla wow servers using Docker, Wordpress and a Traefik reverse proxy for free SSL certificates.
+This is a simple CMS solution for vanilla WoW servers using Docker, Wordpress, and a Traefik reverse proxy for free SSL certificates.
 
-Theme: Twenty Seventeen
+**Theme:** Twenty Seventeen
 
-Plugins: Options Twenty Seventeen, Updraftplus, WPCode
+**Plugins:** Options Twenty Seventeen, Updraftplus, WPCode
 
-Result: https://vanillareforged.org/
+**Result:** [Vanilla Reforged](https://vanillareforged.org/)
 
 ### Dependencies
 
-+ docker
-+ docker compose 2
+- Docker
+- Docker compose 2
 
 ### Security
 
-Secure your system by understanding the following information: https://github.com/chaifeng/ufw-docker.
+Secure your system by understanding the following information: [ufw-docker](https://github.com/chaifeng/ufw-docker).
 
-the ufw commands you will need to secure your installation:
+The ufw commands you will need to secure your installation:
 
 Management:
 
@@ -25,6 +25,7 @@ Management:
 ufw allow from [your client ip]
 ufw route allow proto tcp from [your client ip] to any
 ```
+
 Lazycms public access:
 
 ```sh
@@ -50,16 +51,17 @@ docker compose up -d
 ```
 
 ### MANDATORY TODO BEFORE ANYTHING ELSE:
-### Connect to your IP or website address to do the basic wordpress setup:
 
-- Use the sql user and database name from your .env file.
-- The database hostname is wordpress_database.
+**Connect to your IP or website address to do the basic WordPress setup:**
 
-### Edit your wp-config.php file, so wordpress can be reached behind a reverse proxy:
+- Use the SQL user and database name from your `.env` file.
+- The database hostname is `wordpress_database`.
 
-Open your wp-config.php file located in var/www/html in your lazycms-vmangos-docker directory.
+**Edit your wp-config.php file, so WordPress can be reached behind a reverse proxy:**
 
-Add this code at the beginning of the file right after "<?php":
+Open your `wp-config.php` file located in `var/www/html` in your `lazycms-vmangos-docker` directory.
+
+Add this code at the beginning of the file right after `<?php`:
 
 ```sh
 if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
@@ -68,43 +70,44 @@ if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
 ```
 
 ### THEN DO:
-### If you want to use traefik to get free SSL certificates through letsencrypt and switch to HTTPS for you Wordpress installation:
 
-Switch the comments in your docker-compose.yml from
+If you want to use Traefik to get free SSL certificates through Let's Encrypt and switch to HTTPS for your WordPress installation:
 
-```sh
-    labels:
-     - "traefik.enable=true"
-     - "traefik.http.routers.wordpress.entrypoints=web"
-#     - "traefik.http.routers.wordpress.entrypoints=websecure"
-     - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
-#     - "traefik.http.routers.wordpress.tls=true"
-#     - "traefik.http.routers.wordpress.tls.certresolver=production"
-```
-
-to
+Switch the comments in your `docker-compose.yml` from:
 
 ```sh
-    labels:
-     - "traefik.enable=true"
-#     - "traefik.http.routers.wordpress.entrypoints=web"
-     - "traefik.http.routers.wordpress.entrypoints=websecure"
-     - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
-     - "traefik.http.routers.wordpress.tls=true"
-     - "traefik.http.routers.wordpress.tls.certresolver=production"
+labels:
+ - "traefik.enable=true"
+ - "traefik.http.routers.wordpress.entrypoints=web"
+# - "traefik.http.routers.wordpress.entrypoints=websecure"
+ - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
+# - "traefik.http.routers.wordpress.tls=true"
+# - "traefik.http.routers.wordpress.tls.certresolver=production"
 ```
 
-then uncomment the following section in your traefik.yaml file to enable the https redirection:
+to:
 
 ```sh
-    #http:
-    #  redirections:
-    #    entryPoint:
-    #      to: websecure
-    #      scheme: https
+labels:
+ - "traefik.enable=true"
+# - "traefik.http.routers.wordpress.entrypoints=web"
+ - "traefik.http.routers.wordpress.entrypoints=websecure"
+ - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
+ - "traefik.http.routers.wordpress.tls=true"
+ - "traefik.http.routers.wordpress.tls.certresolver=production"
 ```
 
-then restart your environment with:
+Then uncomment the following section in your `traefik.yaml` file to enable the HTTPS redirection:
+
+```sh
+http:
+  redirections:
+    entryPoint:
+      to: websecure
+      scheme: https
+```
+
+Then restart your environment with:
 
 ```sh
 docker compose down
@@ -113,12 +116,12 @@ docker compose up -d
 
 ### Install WPCode Plugin & create Page to be used for Registration:
 
-Use official Wordpress documentation if you need help with this.
+Use official WordPress documentation if you need help with this.
 
-### Registration form using the Wordpress WPCode Plugin and PHP
+### Registration form using the WordPress WPCode Plugin and PHP
 
-Use the WPCode plugin to create following code snippet (adjust fields to fit your installation). Edit it as necessary to fit your purpose.
-Taken from https://github.com/vmangos/WallRegistrationPage/ and edited with hostnames as they are expected in the vmangos-docker configuration. Shoutout to WallCraft (https://www.wallcraft.org/)!
+Use the WPCode plugin to create the following code snippet (adjust fields to fit your installation). Edit it as necessary to fit your purpose.
+Taken from [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/) and edited with hostnames as they are expected in the `vmangos-docker` configuration. Shoutout to [WallCraft](https://www.wallcraft.org/)!
 
 ```sh
 /* Database credentials. Assuming you are running mariadb
@@ -309,10 +312,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>    
 </body>
 </html>
-```
+´´´
 
 ## Vanilla Reforged Links
 
-Find and join us on the web https://vanillareforged.org/
+Find and join us on the web: [Vanilla Reforged](https://vanillareforged.org/)
 
-Support our efforts on Patreon https://www.patreon.com/vanillareforged
+Support our efforts on Patreon: [Vanilla Reforged Patreon](https://www.patreon.com/vanillareforged)
