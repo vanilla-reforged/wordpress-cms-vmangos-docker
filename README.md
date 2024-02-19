@@ -97,9 +97,9 @@ Use the WPCode plugin to create following code snippet (adjust fields to fit you
 /* Database credentials. Assuming you are running mariadb
 server with default setting vmangos-docker (user 'mangos' with defined password) */
 define("DB_HOST_VMANGOS", "vmangos_database");
-define('DB_USERNAME', 'enter your DB username here');
-define('DB_PASSWORD', 'enter your DB password here');
-define('DB_NAME', 'enter your realmd DB name here');
+define('DB_USERNAME_VMANGOS', 'enter your DB username here');
+define('DB_PASSWORD_VMANGOS', 'enter your DB password here');
+define('DB_NAME_VMANGOS', 'enter your realmd DB name here');
  
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect(DB_HOST_VMANGOS, DB_USERNAME_VMANGOS, DB_PASSWORD_VMANGOS, DB_NAME_VMANGOS);
