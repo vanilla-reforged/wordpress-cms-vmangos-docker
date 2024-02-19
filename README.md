@@ -85,13 +85,8 @@ Use official Wordpress documentation if you need help with this.
 
 ### PHP CODE REGISTRATION FORM
 
-Taken from https://github.com/vmangos/WallRegistrationPage/ and edited with hostnames as they are expected in the vmangos-docker configuration.
-
-Edit as necessary to fit your purpose.
-
-Shoutout to WallCraft (https://www.wallcraft.org/)!
-
-Use the WPCode plugin to create following code snippet (adjust fields to fit your installation).
+Use the WPCode plugin to create following code snippet (adjust fields to fit your installation). Edit it as necessary to fit your purpose.
+Taken from https://github.com/vmangos/WallRegistrationPage/ and edited with hostnames as they are expected in the vmangos-docker configuration. Shoutout to WallCraft (https://www.wallcraft.org/)!
 
 ```sh
 /* Database credentials. Assuming you are running mariadb
