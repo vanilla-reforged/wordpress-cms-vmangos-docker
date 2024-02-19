@@ -1,6 +1,6 @@
 ### lazycms-vmangos-docker
 
-This a simple CMS solution for vanilla wow servers using Docker, Wordpress and a Traefik reverse proxy for free SSL certificates.
+This is a simple CMS solution for vanilla wow servers using Docker, Wordpress and a Traefik reverse proxy for free SSL certificates.
 
 Theme: Twenty Seventeen
 
