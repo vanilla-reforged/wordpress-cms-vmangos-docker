@@ -5,9 +5,12 @@ Using a Traefik reverse proxy for free SSL certificates.
 
 ### preview
 
+[Vanilla Reforged](https://vanillareforged.org/)
+
 Theme used: Twenty Seventeen
+
 Plugins used: Options Twenty Seventeen, Updraftplus, WPCode
-Result: [Vanilla Reforged](https://vanillareforged.org/)
+
 
 ### dependencies
 
