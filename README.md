@@ -2,18 +2,18 @@
 
 A simple CMS for vanilla WoW servers with free SSL certificates from a Traefik reverse proxy.
 
-**Theme:** Twenty Seventeen
+### preview
 
-**Plugins:** Options Twenty Seventeen, Updraftplus, WPCode
+Theme used: Twenty Seventeen
+Plugins used: Options Twenty Seventeen, Updraftplus, WPCode
+Result: [Vanilla Reforged](https://vanillareforged.org/)
 
-**Result:** [Vanilla Reforged](https://vanillareforged.org/)
-
-### Dependencies
+### dependencies
 
 - Docker
 - Docker compose 2
 
-### Security
+### security
 
 Secure your system by understanding the following information: [ufw-docker](https://github.com/chaifeng/ufw-docker).
 
@@ -33,7 +33,7 @@ ufw route allow proto tcp from any to any port 80
 ufw route allow proto tcp from any to any port 443
 ```
 
-### Docker Setup
+### docker setup
 
 First, clone the repository and move into it.
 
@@ -135,11 +135,11 @@ docker compose down
 docker compose up -d
 ```
 
-### Install WPCode Plugin & create Page to be used for Registration:
+### install WPCode plugin & create page to be used for registration:
 
 Use official WordPress documentation if you need help with this.
 
-### Registration form using the WordPress WPCode Plugin and PHP
+### registration form using the wordpress WPCode plugin and php
 
 Use the WPCode plugin to create the following code snippet (adjust fields to fit your installation) and insert it into your Registration Page.
 Taken from [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/). Shoutout to [WallCraft](https://www.wallcraft.org/)!
@@ -335,7 +335,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </html>
 ```
 
-## Vanilla Reforged Links
+### vanilla reforged links
 
 Find and join us on the web: [Vanilla Reforged](https://vanillareforged.org/)
 
