@@ -58,7 +58,7 @@ entryPoints:
 #       storage: /etc/traefik/acme.json
 #       caServer: "https://acme-v02.api.letsencrypt.org/directory"
 #       httpChallenge:
-#        entryPoint: web
+#         entryPoint: web
 #       -- (Optional) Configure DNS Challenge
 #       dnsChallenge:
 #         provider: your-resolver (e.g. cloudflare)
