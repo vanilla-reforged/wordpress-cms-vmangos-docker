@@ -97,14 +97,35 @@ labels:
  - "traefik.http.routers.wordpress.tls.certresolver=production"
 ```
 
-Then uncomment the following section in your `traefik.yaml` file to enable the HTTPS redirection:
+Then uncomment the following sections in your `traefik.yaml` file to enable the HTTPS redirection:
 
 ```sh
-http:
-  redirections:
-    entryPoint:
-      to: websecure
-      scheme: https
+#    http:
+#      redirections:
+#        entryPoint:
+#          to: websecure
+#          scheme: https
+```
+
+```sh
+#certificatesResolvers:
+#  staging:
+#    acme:
+#      email: your-emaill@vmangos.com
+#      storage: /etc/traefik/acme.json
+#      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+#      httpChallenge:
+#        entryPoint: web
+```
+
+```sh
+#  production:
+#     acme:
+#       email: your-emaill@vmangos.com
+#       storage: /etc/traefik/acme.json
+#       caServer: "https://acme-v02.api.letsencrypt.org/directory"
+#       httpChallenge:
+#        entryPoint: web
 ```
 
 Then restart your environment with:
