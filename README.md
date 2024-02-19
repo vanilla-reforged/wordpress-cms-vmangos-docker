@@ -72,6 +72,16 @@ to
      - "traefik.http.routers.wordpress.tls.certresolver=production"
 ```
 
+then uncomment the following section in your traefik.yaml file to enable the https redirection:
+
+```sh
+    #http:
+    #  redirections:
+    #    entryPoint:
+    #      to: websecure
+    #      scheme: https
+```
+
 then restart your environment with:
 
 ```sh
