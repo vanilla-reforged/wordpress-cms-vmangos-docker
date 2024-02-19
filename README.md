@@ -129,7 +129,7 @@ Then uncomment the following sections in your `/etc/traefik/traefik.yaml` file t
 #       storage: /etc/traefik/acme.json
 #       caServer: "https://acme-v02.api.letsencrypt.org/directory"
 #       httpChallenge:
-#        entryPoint: web
+#         entryPoint: web
 ```
 
 Then restart your environment with:
