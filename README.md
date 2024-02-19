@@ -310,10 +310,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </td></tr>	
 			<tr><td>
                 <label>Verify:</label>
-				
-				
 			</td><td>
-                <input type="password" name="passver" class="form-control <?php echo (!empty($passver_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                <input type="password" name="passver" class="form-control <?php echo (!empty($passver_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $pass_ver; ?>">
             </td><td>
 				<span class="invalid-feedback"><?php echo $password_err; ?></span>
             </td></tr>				
