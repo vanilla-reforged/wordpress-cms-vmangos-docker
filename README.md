@@ -49,7 +49,7 @@ Then start your environment with:
 docker compose up -d
 ```
 
-### Connect to your IP or website address to do the basic wordpress setup:
+### (MANDATORY TODO BEFORE ANYTHING ELSE) Connect to your IP or website address to do the basic wordpress setup:
 
 - Use the sql user and database name from your .env file.
 - The database hostname is wordpress_database.
