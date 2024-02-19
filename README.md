@@ -1,4 +1,4 @@
-# lazycms-vmangos-docker
+### lazycms-vmangos-docker
 
 This a simple CMS solution for vanilla wow servers using Docker, Wordpress and a Traefik reverse proxy for free SSL certificates.
 
@@ -8,12 +8,12 @@ Plugins: Options Twenty Seventeen, Updraftplus, WPCode
 
 Result: https://vanillareforged.org/
 
-## Dependencies
+### Dependencies
 
 + docker
 + docker compose 2
 
-## Security Note
+### Security
 
 Secure your system by understanding the following information: https://github.com/chaifeng/ufw-docker.
 
