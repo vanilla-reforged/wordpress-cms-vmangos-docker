@@ -5,7 +5,7 @@
 + docker
 + docker compose 2
 
-### Before you dive in
+## Security Note
 
 Secure your system by understanding the following information: https://github.com/chaifeng/ufw-docker.
 
