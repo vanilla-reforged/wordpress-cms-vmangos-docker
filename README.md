@@ -46,7 +46,7 @@ git clone https://github.com/vanilla-reforged/lazycms-vmangos-docker/
 cd lazycms-vmangos-docker
 ```
 
-At this point, you have to adjust the `./.env` for your desired setup.
+At this point, you have to adjust the `./.env` file for your desired setup.
 
 Then start your environment with:
 
