@@ -49,7 +49,8 @@ Then start your environment with:
 docker compose up -d
 ```
 
-### (MANDATORY TODO BEFORE ANYTHING ELSE) Connect to your IP or website address to do the basic wordpress setup:
+### MANDATORY TODO BEFORE ANYTHING ELSE:
+### Connect to your IP or website address to do the basic wordpress setup:
 
 - Use the sql user and database name from your .env file.
 - The database hostname is wordpress_database.
@@ -66,6 +67,7 @@ if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
 }
 ```
 
+### THEN DO:
 ### If you want to use traefik to get free SSL certificates through letsencrypt and switch to HTTPS for you Wordpress installation:
 
 Switch the comments in your docker-compose.yml from
