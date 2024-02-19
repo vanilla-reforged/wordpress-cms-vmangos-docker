@@ -145,16 +145,24 @@ Use official WordPress documentation if you need help with this.
 
 ### registration form using the wordpress WPCode plugin and php
 
-Use the WPCode plugin to create the following code snippet (adjust fields to fit your installation) and insert it into your Registration Page.
+Use the WPCode plugin to create the following code snippet and insert it into your Registration Page.
 Taken from [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/). Shoutout to [WallCraft](https://www.wallcraft.org/)!
+
+Adjust these entries to fit your installation (without the {}):
+
+- {enter your DB username here}
+- {enter your DB password here}
+- {Enter registration handler account name here}
+- {Enter registration handler account pass here}
+- {URL of your registration Page}
 
 ```sh
 /* Database credentials. Assuming you are running mariadb
 server with default setting vmangos-docker (user 'mangos' with defined password) */
 define("DB_HOST_VMANGOS", "vmangos_database");
-define('DB_USERNAME_VMANGOS', 'enter your DB username here');
-define('DB_PASSWORD_VMANGOS', 'enter your DB password here');
-define('DB_NAME_VMANGOS', 'enter your realmd DB name here');
+define('DB_USERNAME_VMANGOS', '{enter your DB username here}');
+define('DB_PASSWORD_VMANGOS', '{enter your DB password here}');
+define('DB_NAME_VMANGOS', 'realmd');
  
 /* Attempt to connect to MySQL database */
 $link = mysqli_connect(DB_HOST_VMANGOS, DB_USERNAME_VMANGOS, DB_PASSWORD_VMANGOS, DB_NAME_VMANGOS);
@@ -167,8 +175,8 @@ if($link === false){
 // Define variables and initialize with empty values
 $username = $password = $email = "";
 $username_err = $password_err = $email_err = ""; 
-$regname = 'Enter registration handler account name here'; //  (create gmlvl 6 account, enable soap in mangosd.conf - soap uses a dummy gm account to handle registration)
-$regpass = 'Enter registration handler account pass here';
+$regname = '{Enter registration handler account name here}'; //  (create gmlvl 6 account, enable soap in mangosd.conf - soap uses a dummy gm account to handle registration)
+$regpass = '{Enter registration handler account pass here}';
 $host = "vmangos_mangos";
 $soapport = 7878;
 $command = "account create {USERNAME} {PASSWORD}";
@@ -289,7 +297,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="wrapper">
         <h2><center>Sign Up</center></h2>
         <p>Please fill this form to create an account.</p>
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <form action="{URL of your registration Page}" method="post">
 			<table width="100%">
 				<col style="width:25%">
 				<col style="width:50%">
