@@ -101,7 +101,7 @@ labels:
  - "traefik.http.routers.wordpress.tls.certresolver=production"
 ```
 
-Then uncomment the following sections in your `traefik.yaml` file to enable the HTTPS redirection:
+Then uncomment the following sections in your `/etc/traefik/traefik.yaml` file to enable the HTTPS redirection:
 
 ```sh
 #    http:
