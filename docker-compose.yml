@@ -26,6 +26,8 @@ services:
   wordpress_database:
     container_name: wordpress_database
     image: mariadb:latest
+    volumes:
+      - ./var/lib/mysql:/var/lib/mysql
     env_file: .env
     networks:
      - vmangos-network
