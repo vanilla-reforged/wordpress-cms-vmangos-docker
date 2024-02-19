@@ -1,6 +1,7 @@
 ### lazycms-vmangos-docker
 
-A simple CMS for vanilla WoW servers with free SSL certificates from a Traefik reverse proxy.
+A Docker setup for a simple VMaNGOS CMS
+Using a Traefik reverse proxy for free SSL certificates.
 
 ### preview
 
