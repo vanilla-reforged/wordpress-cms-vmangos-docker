@@ -1,6 +1,6 @@
 # lazycms-vmangos-docker
 
-### Dependencies
+## Dependencies
 
 + docker
 + docker compose 2
@@ -26,7 +26,7 @@ ufw route allow proto tcp from any to any port 443
 
 ### Preface
 
-This a simple CMS solution for vanilla wow servers using docker, wordpress and a traefik reverse proxy for free SSL certificates.
+This a simple CMS solution for vanilla wow servers using Docker, Wordpress and a Traefik reverse proxy for free SSL certificates.
 
 Theme: Twenty Seventeen
 
@@ -34,7 +34,6 @@ Plugins: Options Twenty Seventeen, Updraftplus, WPCode
 
 Result: https://vanillareforged.org/
 
-### Instructions lazycms
 ### Docker Setup
 
 First, clone the repository and move into it.
@@ -52,12 +51,12 @@ Then start your environment with:
 docker compose up -d
 ```
 
-#### Connect to your IP or website address to do the basic wordpress setup:
+### Connect to your IP or website address to do the basic wordpress setup:
 
 - Use the sql user and database name from your .env file.
 - The database hostname is wordpress_database.
 
-#### Edit your wp-config.php file, so wordpress can be reached behind a reverse proxy:
+### Edit your wp-config.php file, so wordpress can be reached behind a reverse proxy:
 
 Open your wp-config.php file located in var/www/html in your lazycms-vmangos-docker directory.
 
@@ -69,7 +68,7 @@ if (strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
 }
 ```
 
-#### If you want to use traefik to get free SSL certificates through letsencrypt and switch to HTTPS for you Wordpress installation:
+### If you want to use traefik to get free SSL certificates through letsencrypt and switch to HTTPS for you Wordpress installation:
 
 Switch the comments in your docker-compose.yml from
 
@@ -112,11 +111,11 @@ docker compose down
 docker compose up -d
 ```
 
-#### Install WPCode Plugin & create Page to be used for Registration:
+### Install WPCode Plugin & create Page to be used for Registration:
 
 Use official Wordpress documentation if you need help with this.
 
-### PHP CODE REGISTRATION FORM
+### Registration form using the Wordpress WPCode Plugin and PHP
 
 Use the WPCode plugin to create following code snippet (adjust fields to fit your installation). Edit it as necessary to fit your purpose.
 Taken from https://github.com/vmangos/WallRegistrationPage/ and edited with hostnames as they are expected in the vmangos-docker configuration. Shoutout to WallCraft (https://www.wallcraft.org/)!
