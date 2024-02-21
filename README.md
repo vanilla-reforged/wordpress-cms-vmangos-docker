@@ -157,16 +157,16 @@ Adjust these entries to fit your installation (without the {}):
 - {URL of your registration Page}
 
 ```sh
-/* Database credentials. Assuming you are running mariadb
-server with default setting vmangos-docker (user 'mangos' with defined password) */
+<?php
+// Database credentials
 define("DB_HOST_VMANGOS", "vmangos_database");
 define('DB_USERNAME_VMANGOS', '{enter your DB username here}');
 define('DB_PASSWORD_VMANGOS', '{enter your DB password here}');
 define('DB_NAME_VMANGOS', 'realmd');
- 
-/* Attempt to connect to MySQL database */
+
+// Attempt to connect to MySQL database
 $link = mysqli_connect(DB_HOST_VMANGOS, DB_USERNAME_VMANGOS, DB_PASSWORD_VMANGOS, DB_NAME_VMANGOS);
- 
+
 // Check connection
 if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -174,8 +174,8 @@ if($link === false){
 
 // Define variables and initialize with empty values
 $username = $password = $email = "";
-$username_err = $password_err = $email_err = ""; 
-$regname = '{Enter registration handler account name here}'; //  (create gmlvl 6 account, enable soap in mangosd.conf - soap uses a dummy gm account to handle registration)
+$username_err = $password_err = $email_err = $passver_err = ""; 
+$regname = '{Enter registration handler account name here}';
 $regpass = '{Enter registration handler account pass here}';
 $host = "vmangos_mangos";
 $soapport = 7878;
@@ -183,105 +183,91 @@ $command = "account create {USERNAME} {PASSWORD}";
 $result = "";
 
 // Define SOAP client
-$client = new SoapClient(NULL,
-array(
+$client = new SoapClient(null, [
     "location" => "http://$host:$soapport",
     "uri" => "urn:MaNGOS",
     "style" => SOAP_RPC,
     'login' => $regname,
     'password' => $regpass
-));
+]);
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username
-    if(empty(trim($_POST["username"]))){
-        $username_err = "Required";
-	} elseif(!ctype_alnum($_POST["username"])) {
-		$username_err = "Must be letters and numbers only";
-    } elseif(strlen(trim($_POST["username"])) > 16){
-        $username_err = "Too long";
-    } elseif(strlen(trim($_POST["username"])) < 4){
-        $username_err = "Too short";
-    } else{
-        // Prepare a select statement
+    $input_username = trim($_POST["username"] ?? "");
+    if(empty($input_username)){
+        $username_err = "Please enter a username.";
+    } elseif(!ctype_alnum($input_username)) {
+        $username_err = "Username must be letters and numbers only.";
+    } elseif(strlen($input_username) > 16){
+        $username_err = "Username too long.";
+    } elseif(strlen($input_username) < 4){
+        $username_err = "Username too short.";
+    } else {
         $sql = "SELECT id FROM account WHERE username = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
+            $param_username = $input_username;
             
-            // Set parameters
-            $param_username = htmlspecialchars(trim($_POST["username"]));
-            
-            // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                /* store result */
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    $username_err = "Taken";
+                    $username_err = "This username is already taken.";
                 } else{
-                    $username = htmlspecialchars(trim($_POST["username"]));
+                    $username = $input_username;
                 }
             } else{
-                echo "Error";
+                echo "Oops! Something went wrong. Please try again later.";
             }
-
-            // Close statement
             mysqli_stmt_close($stmt);
         }
     }
     
     // Validate password
-    if(empty(trim($_POST["password"])))
-	{
-        $password_err = "Required";
+    $input_password = trim($_POST["password"] ?? "");
+    if(empty($input_password)){
+        $password_err = "Please enter a password.";
+    } elseif(strlen($input_password) < 6){
+        $password_err = "Password must have at least 6 characters.";
+    } else {
+        $password = $input_password;
     }
-	if(strlen(trim($_POST["password"])) > 16)
-	{
-        $password_err = "Too long";
+
+    // Confirm password
+    $input_passver = trim($_POST["passver"] ?? "");
+    if(empty($input_passver)){
+        $passver_err = "Please confirm the password.";
+    } elseif($password !== $input_passver){
+        $passver_err = "Password did not match.";
     }
-	elseif(strlen(trim($_POST["password"])) < 6)
-	{
-        $password_err = "Too short";
-    }
-	else
-	{
-        $password = htmlspecialchars(trim($_POST["password"]));
-    }
-	
-	// Validate passver
-    if(empty(trim($_POST["passver"])))
-	{
-        $passver_err = "Required";
-    }
-	if(strlen(trim($_POST["passver"])) != strlen(trim($_POST["password"])))
-	{
-        $password_err = "Mismatch";
+
+    // Validate email
+    $input_email = trim($_POST["email"] ?? "");
+    if(empty($input_email)){
+        $email_err = "Please enter an email address.";
+    } elseif(!filter_var($input_email, FILTER_VALIDATE_EMAIL)){
+        $email_err = "Please enter a valid email address.";
+    } else {
+        $email = $input_email;
     }
     
-    // Validate email
-    if(empty(trim($_POST["email"]))){
-        $email_err = "Invalid";     
-    } else{
-        $email = htmlspecialchars(trim($_POST["email"]));
-    }
-   
-    // Check input errors before inserting in database
+    // Check input errors before inserting in database and making SOAP call
     if(empty($username_err) && empty($password_err) && empty($passver_err) && empty($email_err)){
-		$command = str_replace('{USERNAME}', strtoupper($_POST["username"]), $command);
-		$command = str_replace('{PASSWORD}', strtoupper($_POST["password"]), $command);
+        $command = str_replace(['{USERNAME}', '{PASSWORD}'], [strtoupper($username), strtoupper($password)], $command);
         try {
-        $result = $client->executeCommand(new SoapParam($command, "command"));
-		}
-		catch (Exception $e) {
-		echo $e;
-		}
-	}
+            $result = $client->__soapCall("executeCommand", [new SoapParam($command, "command")]);
+            // Handle success or failure of SOAP call here
+            // For example, checking if $result indicates success
+        } catch (Exception $e) {
+            echo "Registration failed: " . $e->getMessage();
+        }
+    }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
