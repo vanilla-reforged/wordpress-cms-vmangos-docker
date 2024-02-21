@@ -329,7 +329,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <form action="https://vanillareforged.org/" method="post">
+        <form action="{URL of your registration Page}" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="username" class="form-control" value="<?php echo $username; ?>">
