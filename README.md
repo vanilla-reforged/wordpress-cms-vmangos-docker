@@ -146,7 +146,7 @@ Use official WordPress documentation if you need help with this.
 ### registration form using the wordpress WPCode plugin and php
 
 Use the WPCode plugin to create the following code snippet and insert it into your Registration Page.
-Taken from [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/). Shoutout to [WallCraft](https://www.wallcraft.org/)!
+Taken from [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/) and adjusted with the help of ChatGPT. Shoutout to [WallCraft](https://www.wallcraft.org/)!
 
 Adjust these entries to fit your installation (without the {}):
 
@@ -286,54 +286,87 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Ensure proper rendering and touch zooming on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
+        body { 
+            font: 14px sans-serif; 
+            text-align: center; 
+            margin: 0; /* Removes default margin */
+            padding: 0; /* Removes default padding */
+            display: flex; /* Use flexbox for body to center wrapper vertically */
+            justify-content: center; /* Center horizontally in the flex container */
+            align-items: center; /* Center vertically in the flex container */
+            min-height: 100vh; /* Minimum height of 100% of the viewport height */
+        }
+        .wrapper { 
+            width: 90%; /* Adjust width to be responsive */
+            max-width: 360px; /* Maximum width of the wrapper */
+            padding: 20px; 
+            margin: auto; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Optional: Adds shadow for better visibility */
+        }
+        .form-group { 
+            margin-bottom: 20px; 
+            text-align: left; 
+        }
+        .form-group label { 
+            display: block;
+            text-align: center;
+            margin-bottom: 5px; 
+        }
+        .form-control {
+            width: 100%; /* Full width */
+            padding: 10px; /* Adjust padding */
+            margin-bottom: 10px; /* Adds bottom margin */
+        }
+        .invalid-feedback { 
+            color: red; 
+            display: block; 
+            text-align: center; /* Centering the error messages */
+        }
+        input[type="submit"].custom-submit-button {
+            background-color: #4b1912;
+            color: #a8522d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%; /* Full width */
+            margin: 20px 0; /* Adjust margin */
+        }
+        input[type="submit"].custom-submit-button:hover {
+            background-color: #3a1410;
+        }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <h2><center>Sign Up</center></h2>
-        <p>Please fill this form to create an account.</p>
-        <form action="{URL of your registration Page}" method="post">
-			<table width="100%">
-				<col style="width:25%">
-				<col style="width:50%">
-				<col style="width:25%">
-			<tr><td>
-				<label>Username:</label>
-			</td><td>
-                <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-            </td><td>
-				<span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </td></tr>		
-			<tr><td>
-                <label>Password:</label>
-			</td><td>
-                <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-            </td><td>
-				<span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </td></tr>	
-			<tr><td>
-                <label>Verify:</label>
-			</td><td>
-                <input type="password" name="passver" class="form-control <?php echo (!empty($passver_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $pass_ver; ?>">
-            </td><td>
-				<span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </td></tr>				
-			<tr><td>
-                <label>Email:</label>
-			</td><td>
-                <input type="text" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-            </td><td>
-				<span class="invalid-feedback"><?php echo $email_err; ?></span>
-			</td></tr>
-			</table>
+        <form action="https://vanillareforged.org/" method="post">
             <div class="form-group">
-				<input type="submit" class="clicker" value="Submit">
-			<table>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" class="form-control" value="<?php echo $username; ?>">
+                <span class="invalid-feedback"><?php echo $username_err; ?></span>
+            </div>    
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                <span class="invalid-feedback"><?php echo $password_err; ?></span>
+            </div>
+            <div class="form-group">
+                <label for="passver">Confirm Password</label>
+                <input type="password" id="passver" name="passver" class="form-control" value="<?php echo $pass_ver; ?>">
+                <span class="invalid-feedback"><?php echo $passver_err; ?></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" class="form-control" value="<?php echo $email; ?>">
+                <span class="invalid-feedback"><?php echo $email_err; ?></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="custom-submit-button" value="Submit">
+            </div>
         </form>
     </div>    
 </body>
