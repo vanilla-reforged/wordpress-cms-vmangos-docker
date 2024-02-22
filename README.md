@@ -361,6 +361,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 ### vanilla reforged links
 
-Find and join us on the web: [Vanilla Reforged](https://vanillareforged.org/)
+[Vanilla Reforged Website](https://vanillareforged.org/)
 
-Support our efforts on Patreon: [Vanilla Reforged Patreon](https://www.patreon.com/vanillareforged)
+[Vanilla Reforged Discord]((https://discord.gg/KkkDV5zmPb))
+
+[Vanilla Reforged Patreon](https://www.patreon.com/vanillareforged)
