@@ -152,8 +152,8 @@ Adjust these entries to fit your installation (without the {}):
 
 - {enter your DB username here}
 - {enter your DB password here}
-- {Enter registration handler account name here}
-- {Enter registration handler account pass here}
+- {Enter registration handler account username here}
+- {Enter registration handler account password here}
 - {URL of your registration Page}
 
 ```sh
@@ -169,14 +169,14 @@ $link = mysqli_connect(DB_HOST_VMANGOS, DB_USERNAME_VMANGOS, DB_PASSWORD_VMANGOS
 
 // Check connection
 if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
+    die("ERROR: Could not connect. Please try again later.");
 }
 
 // Define variables and initialize with empty values
 $username = $password = $email = "";
 $username_err = $password_err = $email_err = $passver_err = ""; 
-$regname = '{Enter registration handler account name here}';
-$regpass = '{Enter registration handler account pass here}';
+$regname = '{Enter registration handler account username here}';
+$regpass = '{Enter registration handler account password here}';
 $host = "vmangos_mangos";
 $soapport = 7878;
 $command = "account create {USERNAME} {PASSWORD}";
@@ -333,22 +333,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <form action="{URL of your registration Page}" method="post">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" name="username" class="form-control" value="<?php echo $username; ?>">
+                <input type="text" id="username" name="username" class="form-control" value="<?php echo htmlspecialchars($username); ?>">
                 <span class="invalid-feedback"><?php echo $username_err; ?></span>
             </div>    
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control" value="<?php echo $password; ?>">
+                <input type="password" id="password" name="password" class="form-control" value="<?php echo htmlspecialchars($password); ?>">
                 <span class="invalid-feedback"><?php echo $password_err; ?></span>
             </div>
             <div class="form-group">
                 <label for="passver">Confirm Password</label>
-                <input type="password" id="passver" name="passver" class="form-control" value="<?php echo isset($passver_err) ? htmlspecialchars($input_passver) : ''; ?>">
+                <input type="password" id="passver" name="passver" class="form-control" value="<?php echo htmlspecialchars(isset($input_passver) ? $input_passver : ''); ?>">
                 <span class="invalid-feedback"><?php echo $passver_err; ?></span>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" id="email" name="email" class="form-control" value="<?php echo $email; ?>">
+                <input type="text" id="email" name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>">
                 <span class="invalid-feedback"><?php echo $email_err; ?></span>
             </div>
             <div class="form-group">
