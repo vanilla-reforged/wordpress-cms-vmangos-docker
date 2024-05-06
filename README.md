@@ -354,6 +354,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="custom-submit-button" value="Submit">
             </div>
         </form>
+
+	    <?php if (!empty($success_message)) : ?>
+            <div><?php echo $success_message; ?></div>
+        <?php endif; ?>
     </div>    
 </body>
 </html>
