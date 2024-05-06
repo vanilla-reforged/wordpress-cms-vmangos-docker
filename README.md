@@ -261,6 +261,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $result = $client->__soapCall("executeCommand", [new SoapParam($command, "command")]);
             // Handle success or failure of SOAP call here
             // For example, checking if $result indicates success
+            $success_message = "Account successfully created!";
         } catch (Exception $e) {
             echo "Registration failed: " . $e->getMessage();
         }
