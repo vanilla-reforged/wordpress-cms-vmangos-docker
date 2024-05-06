@@ -342,7 +342,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <label for="passver">Confirm Password</label>
-                <input type="password" id="passver" name="passver" class="form-control" value="<?php echo $pass_ver; ?>">
+                <input type="password" id="passver" name="passver" class="form-control" value="<?php echo $input_passver; ?>">
                 <span class="invalid-feedback"><?php echo $passver_err; ?></span>
             </div>
             <div class="form-group">
