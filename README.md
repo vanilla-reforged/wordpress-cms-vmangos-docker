@@ -156,6 +156,8 @@ Adjust these entries to fit your installation (without the {}):
 - {Enter registration handler account password here}
 - {URL of your registration Page}
 
+Note the email section is outcommented below - i suggest only outcommenting this if you absolutely need to collect users emailadresses, for most vmangos servers this is a privacy breach waiting to happen.
+
 ```sh
 <?php
 // Database credentials
@@ -173,8 +175,9 @@ if($link === false){
 }
 
 // Define variables and initialize with empty values
-$username = $password = $email = "";
-$username_err = $password_err = $email_err = $passver_err = ""; 
+$username = $password = "";
+$username_err = $password_err = $passver_err = ""; 
+//$email = ""; // Initialize email variable (commented out)
 $regname = '{Enter registration handler account username here}';
 $regpass = '{Enter registration handler account password here}';
 $host = "vmangos_mangos";
@@ -244,7 +247,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $passver_err = "Password did not match.";
     }
 
-    // Validate email
+    // Validate email (commented out)
+    /*
     $input_email = trim($_POST["email"] ?? "");
     if(empty($input_email)){
         $email_err = "Please enter an email address.";
@@ -253,14 +257,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else {
         $email = $input_email;
     }
+    */
+
+    // Use the dummy email address
+    $email = "dummy@vanillareforged.org";
     
     // Check input errors before inserting in database and making SOAP call
-    if(empty($username_err) && empty($password_err) && empty($passver_err) && empty($email_err)){
+    if(empty($username_err) && empty($password_err) && empty($passver_err)){
         $command = str_replace(['{USERNAME}', '{PASSWORD}'], [strtoupper($username), strtoupper($password)], $command);
         try {
             $result = $client->__soapCall("executeCommand", [new SoapParam($command, "command")]);
             // Handle success or failure of SOAP call here
-            // For example, checking if $result indicates success
             $success_message = "Account successfully created!";
         } catch (Exception $e) {
             echo "Registration failed: " . $e->getMessage();
@@ -346,11 +353,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="password" id="passver" name="passver" class="form-control" value="<?php echo htmlspecialchars(isset($input_passver) ? $input_passver : ''); ?>">
                 <span class="invalid-feedback"><?php echo $passver_err; ?></span>
             </div>
+            <!-- Email field commented out -->
+            <!--
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="text" id="email" name="email" class="form-control" value="<?php echo htmlspecialchars($email); ?>">
                 <span class="invalid-feedback"><?php echo $email_err; ?></span>
             </div>
+            -->
             <div class="form-group">
                 <input type="submit" class="custom-submit-button" value="Submit">
             </div>
@@ -362,6 +372,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>    
 </body>
 </html>
+
 ?>
 ```
 
