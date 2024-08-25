@@ -146,8 +146,7 @@ Use official WordPress documentation if you need help with this.
 ### registration form using the wordpress WPCode plugin and php
 
 Use the WPCode plugin to create the following code snippet and insert it into your Registration Page.
-Taken from [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/) and adjusted with the help of ChatGPT. Shoutout to [WallCraft](https://www.wallcraft.org/)!
-
+Based on [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/)
 Adjust these entries to fit your installation (without the {}):
 
 - {enter your DB username here}
