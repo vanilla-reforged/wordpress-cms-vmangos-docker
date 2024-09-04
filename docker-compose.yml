@@ -1,26 +1,27 @@
-version: '3.3'
-
 networks:
-   vmangos-network:
-     external: true
+  vmangos-network:
+    external: true
 
 services:
   wordpress:
     container_name: wordpress
-    labels:
-     - "traefik.enable=true"
-     - "traefik.http.routers.wordpress.entrypoints=web"
-#     - "traefik.http.routers.wordpress.entrypoints=websecure"
-     - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
-#     - "traefik.http.routers.wordpress.tls=true"
-#     - "traefik.http.routers.wordpress.tls.certresolver=production"
     build:
       context: .
-      dockerfile: docker/wordpress/Dockerfile 
+      dockerfile: docker/wordpress/Dockerfile
     volumes:
       - ./var/www/html:/var/www/html
+    environment:
+      - WORDPRESS_DB_HOST=wordpress_database
+    env_file: .env
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wordpress.entrypoints=web"
+      # - "traefik.http.routers.wordpress.entrypoints=websecure"
+      - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
+      # - "traefik.http.routers.wordpress.tls=true"
+      # - "traefik.http.routers.wordpress.tls.certresolver=production"
     networks:
-     - vmangos-network
+      - vmangos-network
     restart: unless-stopped
 
   wordpress_database:
@@ -29,8 +30,10 @@ services:
     volumes:
       - ./var/lib/mysql:/var/lib/mysql
     env_file: .env
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=no  # Always use secure passwords
     networks:
-     - vmangos-network
+      - vmangos-network
     restart: unless-stopped
 
   traefik:
@@ -39,8 +42,8 @@ services:
     ports:
       - 80:80
       - 443:443
-    # -- (Optional) Enable Dashboard, don't do in production
-    #  - 8080:8080
+    # Uncomment below if you want to enable the Traefik dashboard, don't do in production
+    # - 8080:8080
     volumes:
       - ./etc/traefik:/etc/traefik
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -51,5 +54,3 @@ services:
     networks:
       - vmangos-network
     restart: unless-stopped
-
-
