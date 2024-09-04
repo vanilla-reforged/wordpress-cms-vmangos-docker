@@ -10,6 +10,7 @@ services:
       dockerfile: docker/wordpress/Dockerfile
     volumes:
       - ./var/www/html:/var/www/html
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     environment:
       - WORDPRESS_DB_HOST=wordpress_database
     env_file: .env
