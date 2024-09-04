@@ -31,8 +31,6 @@ services:
     volumes:
       - ./var/lib/mysql:/var/lib/mysql
     env_file: .env
-    environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=no  # Always use secure passwords
     networks:
       - vmangos-network
     restart: unless-stopped
