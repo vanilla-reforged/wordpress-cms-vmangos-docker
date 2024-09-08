@@ -50,7 +50,6 @@ services:
     # environment:
     #   - CF_DNS_API_TOKEN=your-cloudflare-api-token
     # -- (Optional) When using a custom network
-    env_file: .env-traefik
     networks:
       - vmangos-network
     restart: unless-stopped
