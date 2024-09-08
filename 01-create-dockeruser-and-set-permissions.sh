@@ -8,7 +8,6 @@ USERNAME=dockeruser
 # Directory paths on the host
 WORDPRESS_DIR="$(pwd)/var/www/html"
 MYSQL_DIR="$(pwd)/var/lib/mysql"
-TRAEFIK_DIR="$(pwd)/etc/traefik"
 
 # Create the user with the specified USER_ID and GROUP_ID if it doesn't already exist
 if ! id "$USERNAME" &>/dev/null; then
@@ -20,7 +19,7 @@ else
 fi
 
 # Set the ownership and permissions
-sudo chown -R $USER_ID:$GROUP_ID $WORDPRESS_DIR $MYSQL_DIR $TRAEFIK_DIR
+sudo chown -R $USER_ID:$GROUP_ID $WORDPRESS_DIR $MYSQL_DIR
 sudo chmod -R 775 $WORDPRESS_DIR $MYSQL_DIR $TRAEFIK_DIR
 
 echo "Directories created and permissions set."
