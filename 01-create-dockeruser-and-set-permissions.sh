@@ -20,6 +20,6 @@ fi
 
 # Set the ownership and permissions
 sudo chown -R $USER_ID:$GROUP_ID $WORDPRESS_DIR $MYSQL_DIR
-sudo chmod -R 775 $WORDPRESS_DIR $MYSQL_DIR $TRAEFIK_DIR
+sudo chmod -R 775 $WORDPRESS_DIR $MYSQL_DIR
 
 echo "Directories created and permissions set."
