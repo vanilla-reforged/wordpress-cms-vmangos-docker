@@ -54,8 +54,6 @@ docker compose up -d
 
 ### MANDATORY TODO BEFORE ANYTHING ELSE:
 
-**Connect to your IP or website address to do the basic WordPress setup:**
-
 **Edit your wp-config.php file, so WordPress can be reached behind a reverse proxy:**
 
 Open your `wp-config.php` file located in `var/www/html` in your `lazycms-vmangos-docker` directory.
