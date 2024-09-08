@@ -1,40 +1,40 @@
+```
 ### lazycms-vmangos-docker
 
-A Docker setup for a simple VMaNGOS CMS
-Using a Traefik reverse proxy for free SSL certificates.
+A Docker setup for a simple VMaNGOS CMS using a Traefik reverse proxy for free SSL certificates.
 
-### preview
+### Preview
 
 [Vanilla Reforged](https://vanillareforged.org/)
 
 Theme used: Eldritch
 
-### dependencies
+### Dependencies
 
 - Docker
-- Docker compose 2
+- Docker Compose 2
 
-### security
+### Security
 
 Secure your system by understanding the following information: [ufw-docker](https://github.com/chaifeng/ufw-docker).
 
 The ufw commands you will need to secure your installation:
 
-Management:
+**Management:**
 
 ```sh
 ufw allow from [your client ip]
 ufw route allow proto tcp from [your client ip] to any
 ```
 
-Lazycms public access:
+**Lazycms public access:**
 
 ```sh
 ufw route allow proto tcp from any to any port 80
 ufw route allow proto tcp from any to any port 443
 ```
 
-### docker setup
+### Docker Setup
 
 First, clone the repository and move into it.
 
@@ -135,23 +135,21 @@ docker compose down
 docker compose up -d
 ```
 
-### install WPCode plugin & create page to be used for registration:
+### Install WPCode Plugin & Create Registration Page
 
-Use official WordPress documentation if you need help with this.
+Refer to the official WordPress documentation if you need assistance installing the WPCode plugin and creating a new page for registration.
 
-### registration form using the wordpress WPCode plugin and php
+### Registration Form Using the WordPress WPCode Plugin and PHP
 
-Use the WPCode plugin to create the following code snippet and insert it into your Registration Page.
-Based on [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/)
-Adjust these entries to fit your installation (without the {}):
+Use the WPCode plugin to insert the PHP snippet into your newly created Registration Page. This code is based on the [WallRegistrationPage](https://github.com/vmangos/WallRegistrationPage/). Customize the snippet by replacing the placeholders with your actual configuration details:
 
-- {enter your DB username here}
-- {enter your DB password here}
-- {Enter registration handler account username here}
-- {Enter registration handler account password here}
-- {URL of your registration Page}
+- `{enter your DB username here}`: Your database username.
+- `{enter your DB password here}`: Your database password.
+- `{Enter registration handler account username here}`: Username for the account handling registrations.
+- `{Enter registration handler account password here}`: Password for the account handling registrations.
+- `{URL of your registration Page}`: The full URL to your registration page.
 
-Note the email section is outcommented below - i suggest only outcommenting this if you absolutely need to collect users emailadresses, for most vmangos servers this is a privacy breach waiting to happen.
+**Privacy Note:** The email section of the code is commented out by default. It is recommended to keep it this way unless collecting email addresses is absolutely necessary, as storing emails can pose a privacy risk.
 
 ```sh
 <?php
@@ -371,7 +369,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 ```
 
-## vanilla reforged links
+## Vanilla Reforged Links
 - [Vanilla Reforged Website](https://vanillareforged.org/)
 - [Vanilla Reforged Discord](https://discord.gg/KkkDV5zmPb)
 - [Vanilla Reforged Patreon](https://www.patreon.com/vanillareforged)
