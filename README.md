@@ -2,6 +2,10 @@
 
 A Docker setup for a simple VMaNGOS CMS using a Traefik reverse proxy for free SSL certificates.
 
+### Todo
+
+Use docker swarm to leverage docker secrets.
+
 ### Preview
 
 [Vanilla Reforged](https://vanillareforged.org/)
