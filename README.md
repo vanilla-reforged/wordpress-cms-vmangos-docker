@@ -7,10 +7,7 @@ Using a Traefik reverse proxy for free SSL certificates.
 
 [Vanilla Reforged](https://vanillareforged.org/)
 
-Theme used: Twenty Seventeen
-
-Plugins used: Options Twenty Seventeen, Updraftplus, WPCode
-
+Theme used: Eldritch
 
 ### dependencies
 
