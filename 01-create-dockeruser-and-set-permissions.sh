@@ -19,9 +19,6 @@ else
     echo "User $USERNAME already exists."
 fi
 
-# Create directories if they do not exist
-mkdir -p $WORDPRESS_DIR $MYSQL_DIR $TRAEFIK_DIR
-
 # Set the ownership and permissions
 sudo chown -R $USER_ID:$GROUP_ID $WORDPRESS_DIR $MYSQL_DIR $TRAEFIK_DIR
 sudo chmod -R 775 $WORDPRESS_DIR $MYSQL_DIR $TRAEFIK_DIR
