@@ -43,7 +43,9 @@ git clone https://github.com/vanilla-reforged/lazycms-vmangos-docker/
 cd lazycms-vmangos-docker
 ```
 
-At this point, you have to adjust the `./.env` file for your desired setup.
+First run the bash script `./01-create-dockeruser-and-set-permissions` so the containers can access the bound host system directories.
+
+Afterwards, you have to adjust the `./.env-wordpress`, `./.env-wordpress-database` and `./.env-traefik` files for your desired setup.
 
 Then start your environment with:
 
@@ -54,9 +56,6 @@ docker compose up -d
 ### MANDATORY TODO BEFORE ANYTHING ELSE:
 
 **Connect to your IP or website address to do the basic WordPress setup:**
-
-- Use the SQL user and database name from your `.env` file.
-- The database hostname is `wordpress_database`.
 
 **Edit your wp-config.php file, so WordPress can be reached behind a reverse proxy:**
 
