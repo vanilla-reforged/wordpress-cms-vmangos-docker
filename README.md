@@ -48,7 +48,7 @@ cd lazycms-vmangos-docker
 
 First run the bash script `./01-create-dockeruser-and-set-permissions` so the containers can access the bound host system directories.
 
-Afterwards, you have to adjust the `./.env`, `./.env-wordpress` and `./.env-wordpress-database` files for your desired setup.
+Afterwards, you have to adjust the `.env`, `.env-wordpress` and `.env-wordpress-database` files for your desired setup.
 
 Then start your environment with:
 
