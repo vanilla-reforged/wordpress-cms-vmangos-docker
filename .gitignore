@@ -1,5 +1,4 @@
 !/**/.gitkeep
-.env
 var/lib/mysql/*
 www/html/*
 etc/traefik/*
