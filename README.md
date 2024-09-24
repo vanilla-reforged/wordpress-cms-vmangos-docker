@@ -23,14 +23,14 @@ Secure your system by understanding the following information: [ufw-docker](http
 
 The ufw commands you will need to secure your installation:
 
-**Management:**
+### Management:
 
 ```sh
 ufw allow from [your client ip]
 ufw route allow proto tcp from [your client ip] to any
 ```
 
-**Public Access:**
+### Public Access:
 
 ```sh
 ufw route allow proto tcp from any to any port 80
