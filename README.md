@@ -133,7 +133,7 @@ Refer to the official WordPress documentation for instructions on installing the
 
 ---
 
-### PHP Snippet for Registration Form (DO NOT CHANGE)
+### PHP Snippet for Registration Form
 
     <?php
     // Database credentials
