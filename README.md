@@ -30,7 +30,7 @@ ufw allow from [your client ip]
 ufw route allow proto tcp from [your client ip] to any
 ```
 
-**Lazycms public access:**
+**Public Access:**
 
 ```sh
 ufw route allow proto tcp from any to any port 80
