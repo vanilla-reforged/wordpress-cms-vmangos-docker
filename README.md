@@ -75,7 +75,6 @@ You must edit your `wp-config.php` file to enable WordPress to work behind a rev
 
 To use Traefik for obtaining free SSL certificates through Let's Encrypt, switch the comments in your `docker-compose.yml` from:
 
-    ```yaml
     labels:
      - "traefik.enable=true"
      - "traefik.http.routers.wordpress.entrypoints=web"
@@ -83,11 +82,9 @@ To use Traefik for obtaining free SSL certificates through Let's Encrypt, switch
      - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
     # - "traefik.http.routers.wordpress.tls=true"
     # - "traefik.http.routers.wordpress.tls.certresolver=production"
-    ```
 
 to:
 
-    ```yaml
     labels:
      - "traefik.enable=true"
     # - "traefik.http.routers.wordpress.entrypoints=web"
@@ -95,21 +92,17 @@ to:
      - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
      - "traefik.http.routers.wordpress.tls=true"
      - "traefik.http.routers.wordpress.tls.certresolver=production"
-    ```
 
 ### Update Traefik Configuration
 
 Uncomment the following sections in `/etc/traefik/traefik.yaml` to enable HTTPS redirection:
 
-    ```yaml
     #    http:
     #      redirections:
     #        entryPoint:
     #          to: websecure
     #          scheme: https
-    ```
 
-    ```yaml
     #certificatesResolvers:
     #  staging:
     #    acme:
@@ -118,9 +111,7 @@ Uncomment the following sections in `/etc/traefik/traefik.yaml` to enable HTTPS 
     #      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
     #      httpChallenge:
     #        entryPoint: web
-    ```
 
-    ```yaml
     #  production:
     #    acme:
     #      email: your-email@vmangos.com
@@ -128,16 +119,13 @@ Uncomment the following sections in `/etc/traefik/traefik.yaml` to enable HTTPS 
     #      caServer: "https://acme-v02.api.letsencrypt.org/directory"
     #      httpChallenge:
     #        entryPoint: web
-    ```
 
 ### Restart Docker Environment
 
 Apply the changes by restarting your Docker environment:
 
-    ```bash
     docker compose down
     docker compose up -d
-    ```
 
 ## Installing WPCode Plugin & Creating a Registration Page
 
@@ -147,7 +135,6 @@ Refer to the official WordPress documentation for instructions on installing the
 
 ### PHP Snippet for Registration Form (DO NOT CHANGE)
 
-    ```php
     <?php
     // Database credentials
     define("DB_HOST_VMANGOS", "vmangos_database");
@@ -363,7 +350,6 @@ Refer to the official WordPress documentation for instructions on installing the
     </html>
 
     ?>
-    ```
 
 ## Vanilla Reforged Links
 - [Vanilla Reforged Website](https://vanillareforged.org/)
