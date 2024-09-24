@@ -43,12 +43,10 @@ First, clone the repository and move into it.
 
 ```sh
 git clone https://github.com/vanilla-reforged/lazycms-vmangos-docker/
-cd lazycms-vmangos-docker
+cd wordpress-cms-vmangos-docker
 ```
 
-First run the bash script `./01-create-dockeruser-and-set-permissions` so the containers can access the bound host system directories.
-
-Afterwards, you have to adjust the `.env`, `.env-wordpress` and `.env-wordpress-database` files for your desired setup.
+Adjust the `.env`, `.env-wordpress` and `.env-wordpress-database` files for your desired setup.
 
 Then start your environment with:
 
