@@ -41,9 +41,9 @@ To secure your system, refer to the [ufw-docker guide](https://github.com/chaife
 
 ### Step 1: Clone the Repository
 
-Clone the repository and navigate to the directory:
+Use a User with UID:GUID 1000:1000 for this step (default user on ubuntu).:
 
-    git clone https://github.com/vanilla-reforged/lazycms-vmangos-docker/
+    git clone https://github.com/vanilla-reforged/wordpress-cms-vmangos-docker/
     cd wordpress-cms-vmangos-docker
 
 ### Step 2: Configure Environment Variables
@@ -54,7 +54,7 @@ Edit the `.env`, `.env-wordpress`, and `.env-wordpress-database` files according
 
 Once configured, bring up the Docker environment with:
 
-    docker compose up -d
+    sudo docker compose up -d
 
 ## Mandatory Changes Before Proceeding
 
