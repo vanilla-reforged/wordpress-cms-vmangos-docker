@@ -22,7 +22,7 @@ services:
     networks:
       - vmangos-network
     restart: unless-stopped
-    user: "1000:1000"  # User ID and group ID set to 1001
+    user: "1000:1000"  # User ID and group ID set to 1000
 
   wordpress_database:
     container_name: wordpress-database
@@ -33,7 +33,7 @@ services:
     networks:
       - vmangos-network
     restart: unless-stopped
-    user: "1000:1000"  # User ID and group ID set to 1001
+    user: "1000:1000"  # User ID and group ID set to 1000
 
   traefik:
     image: traefik:v2.10.4
