@@ -124,8 +124,8 @@ Uncomment the following sections in `/etc/traefik/traefik.yaml` to enable HTTPS 
 
 Apply the changes by restarting your Docker environment:
 
-    docker compose down
-    docker compose up -d
+    sudo docker compose down
+    sudo docker compose up -d
 
 ## Installing WPCode Plugin & Creating a Registration Page
 
