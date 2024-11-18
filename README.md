@@ -137,10 +137,11 @@ Refer to the official WordPress documentation for instructions on installing the
 
 Edit these to fit your installation:
 
-- {enter your DB username here}
-- {enter your DB password here}
-- {enter registration handler account username here}
-- {enter registration handler account password here}
+{enter your DB username here}/
+{enter your DB password here}/
+{enter registration handler account username here}/
+{enter registration handler account password here}
+
 
     <?php
     // Database credentials
