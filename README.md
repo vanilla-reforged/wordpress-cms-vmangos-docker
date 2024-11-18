@@ -137,13 +137,10 @@ Refer to the official WordPress documentation for instructions on installing the
 
 Edit these to fit your installation:
 
-{enter your DB username here}
-
-{enter your DB password here}
-
-{Enter registration handler account username here}
-
-{Enter registration handler account password here}
+- {enter your DB username here}
+- {enter your DB password here}
+- {enter registration handler account username here}
+- {enter registration handler account password here}
 
     <?php
     // Database credentials
@@ -164,8 +161,8 @@ Edit these to fit your installation:
     $username = $password = "";
     $username_err = $password_err = $passver_err = ""; 
     //$email = ""; // Initialize email variable (commented out)
-    $regname = '{Enter registration handler account username here}';
-    $regpass = '{Enter registration handler account password here}';
+    $regname = '{enter registration handler account username here}';
+    $regpass = '{enter registration handler account password here}';
     $host = "vmangos-mangos";
     $soapport = 7878;
     $command = "account create {USERNAME} {PASSWORD}";
