@@ -135,9 +135,16 @@ Refer to the official WordPress documentation for instructions on installing the
 
 ### PHP Snippet for Registration Form
 
+Edit these to fit your installation:
+
+{enter your DB username here}
+{enter your DB password here}
+{Enter registration handler account username here}
+{Enter registration handler account password here}
+
     <?php
     // Database credentials
-    define("DB_HOST_VMANGOS", "vmangos_database");
+    define("DB_HOST_VMANGOS", "vmangos-database");
     define('DB_USERNAME_VMANGOS', '{enter your DB username here}');
     define('DB_PASSWORD_VMANGOS', '{enter your DB password here}');
     define('DB_NAME_VMANGOS', 'realmd');
@@ -156,7 +163,7 @@ Refer to the official WordPress documentation for instructions on installing the
     //$email = ""; // Initialize email variable (commented out)
     $regname = '{Enter registration handler account username here}';
     $regpass = '{Enter registration handler account password here}';
-    $host = "vmangos_mangos";
+    $host = "vmangos-mangos";
     $soapport = 7878;
     $command = "account create {USERNAME} {PASSWORD}";
     $result = "";
