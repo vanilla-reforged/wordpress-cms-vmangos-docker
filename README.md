@@ -27,7 +27,7 @@ To secure your system, refer to the [ufw-docker guide](https://github.com/chaife
 
 - **Allow management access from a specific IP**:
     ```bash
-    ufw allow from [your client ip]
+    ufw allow from [your client ip] to any
     ufw route allow proto tcp from [your client ip] to any
     ```
 
