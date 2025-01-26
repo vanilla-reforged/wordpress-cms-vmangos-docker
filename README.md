@@ -140,7 +140,8 @@ Edit these to fit your installation:
 {enter your DB username here}/
 {enter your DB password here}/
 {enter registration handler account username here}/
-{enter registration handler account password here}
+{enter registration handler account password here}/
+{URL of your registration Page}
 
 
     <?php
