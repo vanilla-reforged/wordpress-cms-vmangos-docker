@@ -214,19 +214,19 @@ Edit these to fit your installation:
             }
         }
         
-        // Validate password
-        $input_password = trim($_POST["password"] ?? "");
-        if(empty($input_password)){
-            $password_err = "Please enter a password.";
-        } elseif(strlen($input_password) < 6){
-            $password_err = "Password must have at least 6 characters.";
-        } elseif(strlen($input_password) > 16){
-            $password_err = "Password must not exceed 16 characters.";
-        } elseif(!preg_match('/^[a-zA-Z0-9!@#$%^&*_\-+=.,;:~]+$/', $input_password)) {
-            $password_err = "Password contains invalid characters. Please use only letters, numbers, and these special characters: !@#$%^&*_-+=.,;:~";
-        } else {
-            $password = $input_password;
-        }
+    // Validate password
+    $input_password = trim($_POST["password"] ?? "");
+    if(empty($input_password)){
+        $password_err = "Please enter a password.";
+    } elseif(strlen($input_password) < 6){
+        $password_err = "Password must have at least 6 characters.";
+    } elseif(strlen($input_password) > 16){
+        $password_err = "Password must not exceed 16 characters.";
+    } elseif(!preg_match('/^[a-zA-Z0-9!@#$%^&*()_\-+={}[\]?.,;:~]+$/', $input_password)) {
+        $password_err = "Password contains invalid characters. Please use only letters, numbers, and these special characters: !@#$%^&*()_-+={}[]?.,;:~";
+    } else {
+        $password = $input_password;
+    }
 
         // Confirm password
         $input_passver = trim($_POST["passver"] ?? "");
