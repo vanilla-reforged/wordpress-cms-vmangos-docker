@@ -220,8 +220,10 @@ Edit these to fit your installation:
             $password_err = "Please enter a password.";
         } elseif(strlen($input_password) < 6){
             $password_err = "Password must have at least 6 characters.";
-        } elseif(!preg_match('/^[a-zA-Z0-9!@#$%^&*()_\-+={}[\]?.,><:;~]+$/', $input_password)) {
-            $password_err = "Password contains invalid characters. Please avoid quotes, backslashes, backticks, pipes, and non-ASCII characters.";
+        } elseif(strlen($input_password) > 16){
+            $password_err = "Password must not exceed 16 characters.";
+        } elseif(!preg_match('/^[a-zA-Z0-9!@#$%^&*_\-+=.,;:~]+$/', $input_password)) {
+            $password_err = "Password contains invalid characters. Please use only letters, numbers, and these special characters: !@#$%^&*_-+=.,;:~";
         } else {
             $password = $input_password;
         }
