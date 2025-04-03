@@ -249,6 +249,10 @@ Edit these to fit your installation:
         
         // Check input errors before inserting in database and making SOAP call
         if(empty($username_err) && empty($password_err) && empty($passver_err)){
+
+        $username = htmlspecialchars(trim($input_username));
+        $password = htmlspecialchars(trim($input_password));
+
             $command = str_replace(['{USERNAME}', '{PASSWORD}'], [strtoupper($username), strtoupper($password)], $command);
             try {
                 $result = $client->__soapCall("executeCommand", [new SoapParam($command, "command")]);
