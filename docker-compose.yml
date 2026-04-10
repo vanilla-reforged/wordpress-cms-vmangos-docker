@@ -40,16 +40,14 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "443:443/udp"
     env_file:
       - .env
     volumes:
       - ./etc/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - caddy_data:/data
-      - caddy_config:/config
+      - ./var/log/caddy:/var/log/caddy
+      - ./var/caddy/data:/data
+      - ./var/caddy/config:/config
     networks:
       - cms-network
     restart: unless-stopped
-
-volumes:
-  caddy_data:
-  caddy_config:
