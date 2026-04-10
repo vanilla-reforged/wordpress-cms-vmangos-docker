@@ -45,9 +45,9 @@ services:
       - .env
     volumes:
       - ./etc/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
-      - ./var/log/caddy:/var/log/caddy
-      - ./var/caddy/data:/data
       - ./var/caddy/config:/config
+      - ./var/caddy/data:/data
+      - ./var/caddy/log:/var/log/caddy
     networks:
       - cms-network
     restart: unless-stopped
