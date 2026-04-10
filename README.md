@@ -134,7 +134,7 @@ $username_err = $password_err = $passver_err = "";
 $success_message = "";
 
 // API settings
-$api_url = 'http://vmangos-api:8080'; // vmangos-api container in vmangos-network
+$api_url = 'http://vmangos-api:8090'; // vmangos-api container in vmangos-network
 $api_key = '{YOUR_API_KEY}';
 
 // Process form submission
