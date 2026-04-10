@@ -49,7 +49,7 @@ To secure your system, refer to the [ufw-docker guide](https://github.com/chaife
 
 ### Step 1: Clone the Repository
 
-Use a User with UID:GUID 1000:1000 for this step (default user on ubuntu).:
+Use a User with UID:GID 1000:1000 for this step (default user on Ubuntu):
 
     git clone https://github.com/vanilla-reforged/wordpress-cms-vmangos-docker/
     cd wordpress-cms-vmangos-docker
@@ -58,11 +58,23 @@ Use a User with UID:GUID 1000:1000 for this step (default user on ubuntu).:
 
 Edit the `.env`, `.env-wordpress`, and `.env-wordpress-database` files according to your setup.
 
-### Step 3: Start Docker Environment
+Example `.env`:
+
+    WEBSITE_URL=example.com
+    WEBSITE_URL_WWW=www.example.com
+
+### Step 3: Create Docker Network
+
+This setup uses an external Docker network named `cms-network`.
+
+    docker network create cms-network
+
+### Step 4: Start Docker Environment
 
 Once configured, bring up the Docker environment with:
 
     sudo docker compose up -d
+
 
 ## Mandatory Changes Before Proceeding
 
@@ -70,7 +82,7 @@ Once configured, bring up the Docker environment with:
 
 You must edit your `wp-config.php` file to enable WordPress to work behind a reverse proxy.
 
-1. Open `wp-config.php` located in `var/www/html` inside the `lazycms-vmangos-docker` directory.
+1. Open `wp-config.php` located in `var/www/html` inside the project directory.
 2. Add this snippet directly after `<?php`:
 
     ```php
@@ -79,58 +91,26 @@ You must edit your `wp-config.php` file to enable WordPress to work behind a rev
     }
     ```
 
-## Switching to HTTPS with Traefik
+## HTTPS with Caddy
 
-To use Traefik for obtaining free SSL certificates through Let's Encrypt, switch the comments in your `docker-compose.yml` from:
+Caddy automatically provisions and renews TLS certificates (Let's Encrypt).
 
-    labels:
-     - "traefik.enable=true"
-     - "traefik.http.routers.wordpress.entrypoints=web"
-    # - "traefik.http.routers.wordpress.entrypoints=websecure"
-     - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
-    # - "traefik.http.routers.wordpress.tls=true"
-    # - "traefik.http.routers.wordpress.tls.certresolver=production"
+### Requirements
 
-to:
+- `WEBSITE_URL` and `WEBSITE_URL_WWW` must point to your server
+- Ports **80** and **443** must be reachable from the internet
 
-    labels:
-     - "traefik.enable=true"
-    # - "traefik.http.routers.wordpress.entrypoints=web"
-     - "traefik.http.routers.wordpress.entrypoints=websecure"
-     - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
-     - "traefik.http.routers.wordpress.tls=true"
-     - "traefik.http.routers.wordpress.tls.certresolver=production"
+### How it works
 
-### Update Traefik Configuration
+- Caddy reads your domain from `.env`
+- Automatically enables HTTPS
+- Proxies traffic to the `wordpress` container
 
-Uncomment the following sections in `/etc/traefik/traefik.yaml` to enable HTTPS redirection:
+No additional configuration is required.
 
-    #    http:
-    #      redirections:
-    #        entryPoint:
-    #          to: websecure
-    #          scheme: https
+## Restart Docker Environment
 
-    #certificatesResolvers:
-    #  staging:
-    #    acme:
-    #      email: your-email@vmangos.com
-    #      storage: /etc/traefik/acme.json
-    #      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
-    #      httpChallenge:
-    #        entryPoint: web
-
-    #  production:
-    #    acme:
-    #      email: your-email@vmangos.com
-    #      storage: /etc/traefik/acme.json
-    #      caServer: "https://acme-v02.api.letsencrypt.org/directory"
-    #      httpChallenge:
-    #        entryPoint: web
-
-### Restart Docker Environment
-
-Apply the changes by restarting your Docker environment:
+If you change configuration, apply it with:
 
     sudo docker compose down
     sudo docker compose up -d
