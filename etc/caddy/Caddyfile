@@ -35,18 +35,16 @@
     header @admin Cache-Control "no-store"
 
     reverse_proxy wordpress:80 {
-        # Default headers are already passed; custom header_up lines are optional
-        # header_up X-Forwarded-Host {host}
-        # header_up X-Forwarded-Proto {scheme}
-        # header_up X-Forwarded-For {remote_host}
-
+        # Default headers are already passed by Caddy
         lb_try_duration 5s
         lb_try_interval 250ms
 
-        health_uri /wp-login.php
+        # Health check pointing to an endpoint that always returns 200
+        health_uri /wp-admin/admin-ajax.php
         health_interval 30s
         health_timeout 5s
-        health_status 200 301   # Accept 301 redirects as healthy
+        health_status 200
+
         fail_duration 30s
         max_fails 3
 
