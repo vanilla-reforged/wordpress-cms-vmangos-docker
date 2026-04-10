@@ -127,7 +127,7 @@ Edit these to fit your installation:
 
 {YOUR_API_KEY}
 
-
+```php
 <?php
 $username = $password = $passver = "";
 $username_err = $password_err = $passver_err = "";
@@ -263,6 +263,7 @@ input[type="submit"].custom-submit-button:hover { background-color:#3a1410; }
 </div>
 </body>
 </html>
+```
 
 ## Vanilla Reforged Links
 - [Vanilla Reforged Website](https://vanillareforged.org/)
