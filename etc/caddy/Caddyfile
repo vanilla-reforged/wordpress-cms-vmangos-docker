@@ -1,63 +1,43 @@
 {
-    email admin@example.com
+	email admin@example.com
 }
 
 {$WEBSITE_URL}, {$WEBSITE_URL_WWW} {
-    encode zstd gzip
+	encode zstd gzip
 
-    log {
-        output file /var/log/caddy/access.log {
-            roll_size 50MiB
-            roll_keep 10
-            roll_keep_for 720h
-        }
-        format json
-    }
+	log {
+		output file /var/log/caddy/access.log {
+			roll_size 50MiB
+			roll_keep 10
+			roll_keep_for 720h
+		}
+		format json
+	}
 
-    request_body {
-        max_size 64MB
-    }
+	request_body {
+		max_size 64MB
+	}
 
-    header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains"
-        X-Content-Type-Options "nosniff"
-        X-Frame-Options "SAMEORIGIN"
-        Referrer-Policy "strict-origin-when-cross-origin"
-        Permissions-Policy "accelerometer=(), autoplay=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
-        -Server
-    }
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "accelerometer=(), autoplay=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+		-Server
+	}
 
-    @admin {
-        path /wp-admin*
-        path /wp-login.php
-        path /xmlrpc.php
-    }
-    header @admin Cache-Control "no-store"
+	@admin {
+		path /wp-admin*
+		path /wp-login.php
+		path /xmlrpc.php
+	}
+	header @admin Cache-Control "no-store"
 
-    reverse_proxy wordpress:80 {
-        # Default headers are already passed by Caddy
-        lb_try_duration 5s
-        lb_try_interval 250ms
+	reverse_proxy wordpress:80
 
-        # Health check pointing to an endpoint that always returns 200
-        health_uri /wp-admin/admin-ajax.php
-        health_interval 30s
-        health_timeout 5s
-        health_status 200
-
-        fail_duration 30s
-        max_fails 3
-
-        transport http {
-            read_timeout 30s
-            write_timeout 30s
-            response_header_timeout 30s
-            dial_timeout 5s
-        }
-    }
-
-    handle_errors {
-        @upstream5xx expression `{http.error.status_code} >= 500`
-        respond @upstream5xx "Temporary service issue" 503
-    }
+	handle_errors {
+		@upstream5xx expression `{http.error.status_code} >= 500`
+		respond @upstream5xx "Temporary service issue" 503
+	}
 }
