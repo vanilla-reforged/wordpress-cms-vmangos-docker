@@ -1,5 +1,7 @@
+version: "3.9"
+
 networks:
-  vmangos-network:
+  cms-network:
     external: true
 
 services:
@@ -11,45 +13,43 @@ services:
     volumes:
       - ./var/www/html:/var/www/html
       - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
-    env_file: .env-wordpress
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.wordpress.entrypoints=web"
-      # - "traefik.http.routers.wordpress.entrypoints=websecure"
-      - "traefik.http.routers.wordpress.rule=Host(`${WEBSITE_URL}`,`${WEBSITE_URL_WWW}`)"
-      # - "traefik.http.routers.wordpress.tls=true"
-      # - "traefik.http.routers.wordpress.tls.certresolver=production"
+    env_file:
+      - .env-wordpress
     networks:
-      - vmangos-network
+      - cms-network
     restart: unless-stopped
-    user: "1000:1000"  # User ID and group ID set to 1000
+    user: "1000:1000"
 
   wordpress_database:
     container_name: wordpress-database
     image: mariadb:latest
     volumes:
       - ./var/lib/mysql:/var/lib/mysql
-    env_file: .env-wordpress-database
+    env_file:
+      - .env-wordpress-database
     networks:
-      - vmangos-network
+      - cms-network
     restart: unless-stopped
-    user: "1000:1000"  # User ID and group ID set to 1000
+    user: "1000:1000"
 
-  traefik:
-    image: traefik:v2.10.4
-    container_name: traefik
+  caddy:
+    image: caddy:2
+    container_name: caddy
+    depends_on:
+      - wordpress
     ports:
-      - 80:80
-      - 443:443
-    # Uncomment below if you want to enable the Traefik dashboard, don't do in production
-    # - 8080:8080
+      - "80:80"
+      - "443:443"
+    env_file:
+      - .env
     volumes:
-      - ./etc/traefik:/etc/traefik
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    # -- (Optional) When using Cloudflare as Cert Resolver
-    # environment:
-    #   - CF_DNS_API_TOKEN=your-cloudflare-api-token
-    # -- (Optional) When using a custom network
+      - ./etc/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
     networks:
-      - vmangos-network
+      - cms-network
     restart: unless-stopped
+
+volumes:
+  caddy_data:
+  caddy_config:
