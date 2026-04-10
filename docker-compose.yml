@@ -1,5 +1,3 @@
-version: "3.9"
-
 networks:
   cms-network:
     external: true
