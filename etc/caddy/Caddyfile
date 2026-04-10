@@ -1,11 +1,79 @@
-{$WEBSITE_URL}, {$WEBSITE_URL_WWW} {
-    header {
-        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
-        X-Content-Type-Options "nosniff"
-        Referrer-Policy "strict-origin-when-cross-origin"
-        X-Frame-Options "SAMEORIGIN"
-    }
+{
+	email admin@example.com
 
-    encode zstd gzip
-    reverse_proxy wordpress:80
+	# Optional: turn off the admin API if you do not use it
+	# admin off
+}
+
+{$WEBSITE_URL}, {$WEBSITE_URL_WWW} {
+	encode zstd gzip
+
+	log {
+		output file /var/log/caddy/access.log {
+			roll_size 50MiB
+			roll_keep 10
+			roll_keep_for 720h
+		}
+		format json
+	}
+
+	# Limit request body size to reduce abuse risk.
+	# Adjust upward if you expect larger media uploads.
+	request_body {
+		max_size 64MB
+	}
+
+	# Basic hardening headers
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Permissions-Policy "accelerometer=(), autoplay=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
+
+		# Remove server fingerprinting header
+		-Server
+	}
+
+	# Keep these paths from being cached accidentally by intermediaries
+	@admin {
+		path /wp-admin*
+		path /wp-login.php
+		path /xmlrpc.php
+	}
+	header @admin Cache-Control "no-store"
+
+	reverse_proxy wordpress:80 {
+		# Only trust forwarded headers from your upstream proxy if you actually
+		# run one in front of Caddy, such as Cloudflare, HAProxy, or Nginx.
+		# Otherwise, leave trusted_proxies unset.
+		# trusted_proxies static private_ranges
+
+		header_up X-Forwarded-Host {host}
+		header_up X-Forwarded-Proto {scheme}
+		header_up X-Forwarded-For {remote_host}
+
+		lb_try_duration 5s
+		lb_try_interval 250ms
+
+		health_uri /wp-login.php
+		health_interval 30s
+		health_timeout 5s
+		health_status 200
+		fail_duration 30s
+		max_fails 3
+
+		transport http {
+			read_timeout 30s
+			write_timeout 30s
+			response_header_timeout 30s
+			dial_timeout 5s
+		}
+	}
+
+	# Friendly fallback for upstream errors
+	handle_errors {
+		@upstream5xx expression `{http.error.status_code} >= 500`
+		respond @upstream5xx "Temporary service issue" 503
+	}
 }
