@@ -1,3 +1,6 @@
 !/**/.gitkeep
 var/*
 etc/*
+.env
+.env-wordpress
+.env-wordpress-database
