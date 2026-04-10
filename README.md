@@ -138,55 +138,48 @@ $api_url = 'http://vmangos-api:8080'; // vmangos-api container in vmangos-networ
 $api_key = '{YOUR_API_KEY}';
 
 // Process form submission
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // Validate username
+    // Local input validation (format/length)
     $input_username = trim($_POST["username"] ?? "");
-    if(empty($input_username)){
+    if (empty($input_username)) {
         $username_err = "Please enter a username.";
-    } elseif(!ctype_alnum($input_username)){
+    } elseif (!ctype_alnum($input_username)) {
         $username_err = "Username must be letters and numbers only.";
-    } elseif(strlen($input_username) > 16){
-        $username_err = "Username too long.";
-    } elseif(strlen($input_username) < 4){
-        $username_err = "Username too short.";
+    } elseif (strlen($input_username) < 4 || strlen($input_username) > 16) {
+        $username_err = "Username must be 4-16 characters long.";
     } else {
         $username = $input_username;
     }
 
-    // Validate password
     $input_password = trim($_POST["password"] ?? "");
-    if(empty($input_password)){
+    if (empty($input_password)) {
         $password_err = "Please enter a password.";
-    } elseif(strlen($input_password) < 6){
-        $password_err = "Password must have at least 6 characters.";
-    } elseif(strlen($input_password) > 16){
-        $password_err = "Password must not exceed 16 characters.";
-    } elseif(!preg_match('/^[a-zA-Z0-9!@#$%^&*()_\-+={}[\]?.,;:~]+$/', $input_password)) {
+    } elseif (strlen($input_password) < 6 || strlen($input_password) > 16) {
+        $password_err = "Password must be 6-16 characters long.";
+    } elseif (!preg_match('/^[a-zA-Z0-9!@#$%^&*()_\-+={}[\]?.,;:~]+$/', $input_password)) {
         $password_err = "Password contains invalid characters.";
     } else {
         $password = $input_password;
     }
 
-    // Confirm password
     $input_passver = trim($_POST["passver"] ?? "");
-    if(empty($input_passver)){
+    if (empty($input_passver)) {
         $passver_err = "Please confirm the password.";
-    } elseif($password !== $input_passver){
-        $passver_err = "Password did not match.";
+    } elseif ($password !== $input_passver) {
+        $passver_err = "Passwords do not match.";
     }
 
-    // Proceed if no local validation errors
-    if(empty($username_err) && empty($password_err) && empty($passver_err)){
+    // Only call API if local validation passed
+    if (empty($username_err) && empty($password_err) && empty($passver_err)) {
 
-        // Prepare API request
         $payload = ['username' => $username, 'password' => $password];
 
         $ch = curl_init($api_url);
         curl_setopt_array($ch, [
-            CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => json_encode($payload),
-            CURLOPT_HTTPHEADER => [
+            CURLOPT_POST           => true,
+            CURLOPT_POSTFIELDS     => json_encode($payload),
+            CURLOPT_HTTPHEADER     => [
                 'Content-Type: application/json',
                 'X-API-KEY: ' . $api_key
             ],
@@ -198,18 +191,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         curl_close($ch);
 
         if ($curl_error) {
-            echo "Registration failed: " . $curl_error;
+            echo "Registration failed: " . htmlspecialchars($curl_error);
         } else {
             $result = json_decode($response, true);
 
-            if($result['success']){
-                $success_message = $result['message'];
+            if ($result['success'] ?? false) {
+                $success_message = $result['message'] ?? "Account created successfully!";
+                // Reset fields after successful creation
+                $username = $password = $passver = "";
             } else {
-                // Map API error to form fields
-                if(stripos($result['message'], 'username') !== false){
-                    $username_err = $result['message'];
+                // Map API errors to form fields
+                $message = $result['message'] ?? "Registration failed";
+                if (stripos($message, 'username') !== false) {
+                    $username_err = $message;
                 } else {
-                    echo "Registration failed: " . $result['message'];
+                    echo "Registration failed: " . htmlspecialchars($message);
                 }
             }
         }
@@ -223,8 +219,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-/* Same styling as before */
-body { font: 14px sans-serif; text-align: center; margin:0; padding:0; display:flex; justify-content:center; align-items:center; min-height:100vh; }
+body { font:14px sans-serif; text-align:center; margin:0; padding:0; display:flex; justify-content:center; align-items:center; min-height:100vh; }
 .wrapper { width:90%; max-width:360px; padding:20px; margin:auto; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
 .form-group { margin-bottom:20px; text-align:left; }
 .form-group label { display:block; text-align:center; margin-bottom:5px; }
@@ -258,7 +253,7 @@ input[type="submit"].custom-submit-button:hover { background-color:#3a1410; }
     </form>
 
     <?php if (!empty($success_message)) : ?>
-        <div><?php echo $success_message; ?></div>
+        <div><?php echo htmlspecialchars($success_message); ?></div>
     <?php endif; ?>
 </div>
 </body>
