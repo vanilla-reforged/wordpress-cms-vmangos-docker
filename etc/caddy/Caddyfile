@@ -1,8 +1,5 @@
 {
 	email admin@example.com
-
-	# Optional: turn off the admin API if you do not use it
-	# admin off
 }
 
 {$WEBSITE_URL}, {$WEBSITE_URL_WWW} {
@@ -17,25 +14,19 @@
 		format json
 	}
 
-	# Limit request body size to reduce abuse risk.
-	# Adjust upward if you expect larger media uploads.
 	request_body {
 		max_size 64MB
 	}
 
-	# Basic hardening headers
 	header {
 		Strict-Transport-Security "max-age=31536000; includeSubDomains"
 		X-Content-Type-Options "nosniff"
 		X-Frame-Options "SAMEORIGIN"
 		Referrer-Policy "strict-origin-when-cross-origin"
 		Permissions-Policy "accelerometer=(), autoplay=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
-
-		# Remove server fingerprinting header
 		-Server
 	}
 
-	# Keep these paths from being cached accidentally by intermediaries
 	@admin {
 		path /wp-admin*
 		path /wp-login.php
@@ -44,11 +35,6 @@
 	header @admin Cache-Control "no-store"
 
 	reverse_proxy wordpress:80 {
-		# Only trust forwarded headers from your upstream proxy if you actually
-		# run one in front of Caddy, such as Cloudflare, HAProxy, or Nginx.
-		# Otherwise, leave trusted_proxies unset.
-		# trusted_proxies static private_ranges
-
 		header_up X-Forwarded-Host {host}
 		header_up X-Forwarded-Proto {scheme}
 		header_up X-Forwarded-For {remote_host}
@@ -71,7 +57,6 @@
 		}
 	}
 
-	# Friendly fallback for upstream errors
 	handle_errors {
 		@upstream5xx expression `{http.error.status_code} >= 500`
 		respond @upstream5xx "Temporary service issue" 503
