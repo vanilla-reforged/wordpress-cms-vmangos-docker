@@ -135,20 +135,19 @@ Edit these to fit your installation:
 
 ```php
 <?php
-$username = $password = $passver = "";
-$username_err = $password_err = $passver_err = "";
+$username = "";
+$username_err = $password_err = $passver_err = $form_err = "";
 $success_message = "";
 
-// API settings
-$api_url = 'http://vmangos-api:8090'; // vmangos-api container in vmangos-network
-$api_key = '{YOUR_API_KEY}';
+$api_url = getenv('VMANGOS_API_URL') ?: 'http://vmangos-api:8090';
+$api_key = getenv('VMANGOS_API_KEY') ?: '';
 
-// Process form submission
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-    // Local input validation (format/length)
     $input_username = trim($_POST["username"] ?? "");
-    if (empty($input_username)) {
+    $input_password = trim($_POST["password"] ?? "");
+    $input_passver  = trim($_POST["passver"] ?? "");
+
+    if ($input_username === "") {
         $username_err = "Please enter a username.";
     } elseif (!ctype_alnum($input_username)) {
         $username_err = "Username must be letters and numbers only.";
@@ -158,112 +157,70 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $username = $input_username;
     }
 
-    $input_password = trim($_POST["password"] ?? "");
-    if (empty($input_password)) {
+    if ($input_password === "") {
         $password_err = "Please enter a password.";
     } elseif (strlen($input_password) < 6 || strlen($input_password) > 16) {
         $password_err = "Password must be 6-16 characters long.";
     } elseif (!preg_match('/^[a-zA-Z0-9!@#$%^&*()_\-+={}[\]?.,;:~]+$/', $input_password)) {
         $password_err = "Password contains invalid characters.";
-    } else {
-        $password = $input_password;
     }
 
-    $input_passver = trim($_POST["passver"] ?? "");
-    if (empty($input_passver)) {
+    if ($input_passver === "") {
         $passver_err = "Please confirm the password.";
-    } elseif ($password !== $input_passver) {
+    } elseif ($input_password !== $input_passver) {
         $passver_err = "Passwords do not match.";
     }
 
-    // Only call API if local validation passed
-    if (empty($username_err) && empty($password_err) && empty($passver_err)) {
+    if ($api_key === "") {
+        $form_err = "Registration service misconfigured.";
+    }
 
-        $payload = ['username' => $username, 'password' => $password];
+    if ($username_err === "" && $password_err === "" && $passver_err === "" && $form_err === "") {
+        $payload = json_encode([
+            'username' => $input_username,
+            'password' => $input_password
+        ]);
 
         $ch = curl_init($api_url);
         curl_setopt_array($ch, [
-            CURLOPT_POST           => true,
-            CURLOPT_POSTFIELDS     => json_encode($payload),
-            CURLOPT_HTTPHEADER     => [
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $payload,
+            CURLOPT_HTTPHEADER => [
                 'Content-Type: application/json',
                 'X-API-KEY: ' . $api_key
             ],
-            CURLOPT_RETURNTRANSFER => true
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_CONNECTTIMEOUT => 3,
+            CURLOPT_TIMEOUT => 10,
         ]);
 
         $response = curl_exec($ch);
         $curl_error = curl_error($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
         curl_close($ch);
 
         if ($curl_error) {
-            echo "Registration failed: " . htmlspecialchars($curl_error);
+            error_log("Registration API curl error: " . $curl_error);
+            $form_err = "Registration service unavailable.";
         } else {
             $result = json_decode($response, true);
 
-            if ($result['success'] ?? false) {
+            if ($http_code === 200 && is_array($result) && ($result['success'] ?? false)) {
                 $success_message = $result['message'] ?? "Account created successfully!";
-                // Reset fields after successful creation
-                $username = $password = $passver = "";
+                $username = "";
             } else {
-                // Map API errors to form fields
-                $message = $result['message'] ?? "Registration failed";
+                $message = is_array($result) ? ($result['message'] ?? '') : '';
                 if (stripos($message, 'username') !== false) {
-                    $username_err = $message;
+                    $username_err = "This username is unavailable.";
                 } else {
-                    echo "Registration failed: " . htmlspecialchars($message);
+                    error_log("Registration API failure: HTTP $http_code, body: " . $response);
+                    $form_err = "Registration failed. Please try again.";
                 }
             }
         }
     }
 }
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body { font:14px sans-serif; text-align:center; margin:0; padding:0; display:flex; justify-content:center; align-items:center; min-height:100vh; }
-.wrapper { width:90%; max-width:360px; padding:20px; margin:auto; box-shadow:0 4px 8px rgba(0,0,0,0.1); }
-.form-group { margin-bottom:20px; text-align:left; }
-.form-group label { display:block; text-align:center; margin-bottom:5px; }
-.form-control { width:100%; padding:10px; margin-bottom:10px; }
-.invalid-feedback { color:red; display:block; text-align:center; }
-input[type="submit"].custom-submit-button { background-color:#4b1912; color:#a8522d; border:none; padding:10px 20px; border-radius:5px; cursor:pointer; font-size:16px; width:100%; margin:20px 0; }
-input[type="submit"].custom-submit-button:hover { background-color:#3a1410; }
-</style>
-</head>
-<body>
-<div class="wrapper">
-    <form action="" method="post">
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="form-control" value="<?php echo htmlspecialchars($username); ?>">
-            <span class="invalid-feedback"><?php echo $username_err; ?></span>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" class="form-control">
-            <span class="invalid-feedback"><?php echo $password_err; ?></span>
-        </div>
-        <div class="form-group">
-            <label for="passver">Confirm Password</label>
-            <input type="password" id="passver" name="passver" class="form-control">
-            <span class="invalid-feedback"><?php echo $passver_err; ?></span>
-        </div>
-        <div class="form-group">
-            <input type="submit" class="custom-submit-button" value="Submit">
-        </div>
-    </form>
-
-    <?php if (!empty($success_message)) : ?>
-        <div><?php echo htmlspecialchars($success_message); ?></div>
-    <?php endif; ?>
-</div>
-</body>
-</html>
 ```
 
 ## Vanilla Reforged Links
