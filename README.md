@@ -121,7 +121,10 @@ If you change configuration, apply it with:
     sudo docker compose down
     sudo docker compose up -d
 
-## Installing WPCode Plugin & Creating a Registration Page
+## Installing Wordpress, WPCode Plugin and Creating a Registration Page
+
+
+Install Wordpress by connecting to the wordpress installer https://your-domain.com/wp-admin/install.php.
 
 Refer to the official WordPress documentation for instructions on installing the WPCode plugin and creating a registration page.
 
