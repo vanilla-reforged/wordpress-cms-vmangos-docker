@@ -71,7 +71,7 @@ You will need to specifcy the same database user in .env-wordpress and .env-word
 
 This setup uses an external Docker network named `cms-network`.
 
-    docker network create cms-network
+    sudo docker network create cms-network
 
 ### Step 4: Start Docker Environment
 
