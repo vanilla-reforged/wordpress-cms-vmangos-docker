@@ -65,6 +65,8 @@ Example `.env`:
     WEBSITE_URL=example.com
     WEBSITE_URL_WWW=www.example.com
 
+You will need to specifcy the same database user in .env-wordpress and .env-wordpress-database.
+
 ### Step 3: Create Docker Network
 
 This setup uses an external Docker network named `cms-network`.
