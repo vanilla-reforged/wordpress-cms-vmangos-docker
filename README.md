@@ -21,19 +21,17 @@ Make sure Docker and Docker Compose are installed on your system.
 
 ## Security Considerations
 
+Docker-published ports can bypass UFW and become publicly accessible unless you apply the UFW fix below.
+
 ### Using Tailscale
 
 [Tailscale](https://tailscale.com/)
 
 ### Secure Container Access with Tailscale
 
-When using Tailscale, be aware that any port you bind to a container will bypass UFW without the modifcation below and become exposed to the public internet.
+Use the Tailscale network internal IP or make specific services available like this:
 
-Only expose ports that require internet access.
-
-To enable SSH access via Tailscale:
-
-    sudo tailscale up --ssh
+    sudo tailscale serve --tcp 3306 tcp://127.0.0.1:3306
 
 ### Using UFW
 
