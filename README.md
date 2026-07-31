@@ -1,15 +1,5 @@
 ## A Docker setup for a VMaNGOS Wordpress CMS.
 
-## Todo
-
-- Implement Docker Swarm for managing Docker secrets.
-
-## Preview
-
-Check out [Vanilla Reforged](https://vanillareforged.org/) for a live preview.
-
-- **Theme used**: Eldritch
-
 ## Dependencies
 
 - **Docker**
