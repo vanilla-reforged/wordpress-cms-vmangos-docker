@@ -1,6 +1,4 @@
-# Wordpress CMS VMaNGOS Docker
-
-A Docker setup for a simple VMaNGOS WordPress CMS, utilizing a Traefik reverse proxy for free SSL certificates.
+## A Docker setup for a VMaNGOS Wordpress CMS.
 
 ## Todo
 
