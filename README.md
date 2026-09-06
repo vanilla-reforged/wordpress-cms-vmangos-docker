@@ -120,8 +120,6 @@ Install Wordpress by connecting to the wordpress installer https://your-domain.c
 
 Refer to the official WordPress documentation for instructions on installing the WPCode plugin and creating a registration page.
 
----
-
 ### PHP Snippet for Registration Form
 
 Edit these to fit your installation:
